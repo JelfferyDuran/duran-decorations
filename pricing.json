@@ -1,0 +1,38 @@
+[
+  {
+    "id": "circle-arch",
+    "name": "7FT Circle Arch",
+    "name_es": "Arco Circular 7FT",
+    "desc": "Partial balloons up to 24FT, up to 3 colors, custom signage included.",
+    "desc_es": "Globos parciales hasta 24 pies, hasta 3 colores, letrero personalizado incluido.",
+    "market": 350,
+    "duran": 275,
+    "feats": ["Up to 24FT of balloons", "Up to 3 colors", "Custom signage", "Partial coverage"],
+    "feats_es": ["Hasta 24 pies de globos", "Hasta 3 colores", "Letrero personalizado", "Cobertura parcial"],
+    "tag": "popular"
+  },
+  {
+    "id": "open-arch",
+    "name": "7FT Open Arch",
+    "name_es": "Arco Abierto 7FT",
+    "desc": "Balloons up to 30FT with an open, airy design — perfect for entrances.",
+    "desc_es": "Globos hasta 30 pies con diseño abierto y ligero — perfecto para entradas.",
+    "market": 350,
+    "duran": 275,
+    "feats": ["Up to 30FT of balloons", "Up to 3 colors", "Open design", "Max height 10FT"],
+    "feats_es": ["Hasta 30 pies de globos", "Hasta 3 colores", "Diseño abierto", "Altura máxima 10 pies"],
+    "tag": ""
+  },
+  {
+    "id": "grass-wall",
+    "name": "7FT x 7FT Grass Wall",
+    "name_es": "Pared de Césped 7FT x 7FT",
+    "desc": "Rental grass wall with balloons up to 35FT — the ultimate photo backdrop.",
+    "desc_es": "Pared de césped en alquiler con globos hasta 35 pies — el fondo perfecto para fotos.",
+    "market": 450,
+    "duran": 375,
+    "feats": ["Balloons up to 35FT", "Up to 3 colors", "Custom signage", "Rental wall included"],
+    "feats_es": ["Globos hasta 35 pies", "Hasta 3 colores", "Letrero personalizado", "Pared en alquiler incluida"],
+    "tag": "premium"
+  }
+]

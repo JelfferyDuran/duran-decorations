@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Duran Decorations · Party &amp; Event Decor · New Jersey</title>
-<meta name="description" content="Balloon arches, themed parties, weddings, baby showers and custom event decor across New Jersey. Designed with love by Kristina Duran. Book on WhatsApp.">
+<meta name="description" content="Balloon arches, themed parties, weddings, baby showers and custom event decor across New Jersey. Market-beating prices, custom designs by Kristina Duran. Book on WhatsApp.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://jelfferyduran.github.io/duran-decorations/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Duran Decorations">
 <meta property="og:title" content="Duran Decorations · Party &amp; Event Decor">
-<meta property="og:description" content="Balloon arches, themed parties and custom event decor across New Jersey. Book on WhatsApp.">
+<meta property="og:description" content="Balloon arches, themed parties and custom event decor across New Jersey — $75 below market. Book on WhatsApp.">
 <meta property="og:url" content="https://jelfferyduran.github.io/duran-decorations/">
 <meta property="og:image" content="https://jelfferyduran.github.io/duran-decorations/assets/hero-arch.png">
 <meta property="og:locale" content="en_US">
@@ -49,6 +49,8 @@
 /* ============ BASE ============ */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 14px)}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
 body{
   font-family:var(--sans);color:var(--ink);line-height:1.65;
   background:
@@ -58,11 +60,13 @@ body{
     var(--bg);
   transition:background .5s ease,color .35s ease;
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.4;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.14'/%3E%3C/svg%3E");
 }
+#genCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 .wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem;position:relative;z-index:1}
 a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
@@ -74,7 +78,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--nav-bg);back
 .brand b{font-family:var(--serif);font-size:1.25rem;font-weight:700}
 .brand small{display:block;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
 .nav-sp{flex:1}
-.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links{display:flex;gap:1.4rem;align-items:center}
 .nav-links a{font-size:.86rem;font-weight:500;color:var(--ink-soft);transition:color .2s}
 .nav-links a:hover{color:var(--gold-deep)}
 .nav-cta{background:var(--grad-gold);color:#fff;padding:.5rem 1.15rem;border-radius:99px;font-weight:600}
@@ -87,7 +91,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--nav-bg);back
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* ============ HERO ============ */
-.hero{padding:calc(var(--nav-h) + 4.2rem) 0 3.2rem;text-align:center}
+.hero{padding:calc(var(--nav-h) + 4.2rem) 0 3.2rem;text-align:center;position:relative;overflow:hidden}
+#heroGL{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.hero .wrap{position:relative;z-index:2}
 .kicker{font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
 .hero h1{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.4rem);font-weight:700;line-height:1.1;margin:.9rem 0 .55rem}
 .hero h1 em{font-style:italic;color:var(--berry)}
@@ -101,9 +107,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--nav-bg);back
 .hero-badges{display:flex;gap:2.4rem;justify-content:center;margin-top:2.4rem;flex-wrap:wrap}
 .hb .n{font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--berry)}
 .hb .l{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
-.hero-img{width:100%;max-width:860px;margin:2.4rem auto 0;border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--gold-line)}
+.hero-img{width:100%;max-width:860px;margin:2.4rem auto 0;border-radius:22px;box-shadow:var(--shadow);border:1px solid var(--gold-line);will-change:transform}
 /* ============ SECTIONS ============ */
-section{padding:3.6rem 0}
+section{padding:3.6rem 0;position:relative}
 .sec-head{text-align:center;margin-bottom:2.4rem}
 .sec-head .k{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
 .sec-head h2{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.6rem);font-weight:700;margin:.45rem 0 .3rem}
@@ -126,11 +132,39 @@ section{padding:3.6rem 0}
 .tag.best{background:var(--berry)}
 .tag.new{background:var(--teal);color:var(--ink)}
 .tag.premium{background:var(--grad-gold)}
+.tag.popular{background:var(--berry)}
 .card h3{font-family:var(--serif);font-size:1.35rem;font-weight:700}
 .card .cat{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
 .card p{color:var(--ink-soft);font-size:.9rem;font-weight:300;flex:1}
 .card .cta{margin-top:.6rem;color:var(--berry);font-weight:600;font-size:.86rem;display:inline-flex;align-items:center;gap:.35rem}
 .card .cta:hover{color:var(--gold-deep)}
+/* ============ PRICING ============ */
+.price-card{background:var(--surface);border:2px solid var(--gold);box-shadow:inset 0 0 0 1px var(--gold-deep),var(--shadow);border-radius:var(--radius);padding:1.7rem 1.5rem 1.5rem;position:relative;display:flex;flex-direction:column;gap:.65rem;transition:transform .25s,box-shadow .25s}
+.price-card:hover{transform:translateY(-5px);box-shadow:inset 0 0 0 1px var(--gold-deep),0 24px 44px -22px rgba(61,47,61,.45)}
+.save-badge{position:absolute;top:-14px;right:18px;background:var(--berry);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.4rem .85rem;border-radius:99px;box-shadow:0 8px 18px -8px rgba(176,87,110,.6)}
+.price-card h3{font-family:var(--serif);font-size:1.35rem;font-weight:700}
+.price-card .cat{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.market{color:var(--ink-soft);font-size:.9rem;display:flex;align-items:center;gap:.45rem}
+.market b{font-weight:600}
+.market s{opacity:.7}
+.duran{font-family:var(--serif);font-size:2.7rem;font-weight:700;color:var(--berry);line-height:1;display:flex;align-items:baseline;gap:.45rem}
+.duran span{font-size:.85rem;color:var(--ink-soft);font-family:var(--sans);font-weight:400}
+.price-feats{list-style:none;display:grid;gap:.42rem;font-size:.88rem;color:var(--ink-soft);margin:.3rem 0 .5rem}
+.price-feats li::before{content:'✦ ';color:var(--gold)}
+.price-card .btn{margin-top:auto;justify-content:center}
+/* ============ ARCH STUDIO ============ */
+#arch{background:linear-gradient(180deg,transparent,var(--bg-2) 18%,var(--bg-2) 82%,transparent)}
+.arch-wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:2.4rem;align-items:center}
+.arch-stage{position:relative;border-radius:22px;overflow:hidden;height:400px;background:radial-gradient(640px 300px at 50% -5%,var(--lavender),transparent 60%),var(--surface);border:2px solid var(--gold);box-shadow:inset 0 0 0 1px var(--gold-deep),var(--shadow)}
+#archCanvas{width:100%;height:100%;display:block;cursor:crosshair}
+.arch-hint{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);opacity:.8;pointer-events:none}
+.arch-controls{display:grid;gap:1.15rem}
+.arch-controls label{font-size:.82rem;font-weight:600;display:flex;justify-content:space-between;color:var(--ink)}
+.arch-controls output{color:var(--berry);font-weight:700}
+input[type=range]{width:100%;accent-color:var(--berry);cursor:pointer}
+.shuffle-btn{background:var(--grad-gold);color:#fff;border:none;border-radius:99px;padding:.75rem 1.4rem;font-weight:600;cursor:pointer;font-family:var(--sans);font-size:.88rem;transition:.2s}
+.shuffle-btn:hover{transform:translateY(-2px)}
+.arch-note{font-size:.82rem;color:var(--ink-soft);font-weight:300;line-height:1.5}
 /* ============ HOW IT WORKS ============ */
 .steps{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .step{padding:1.6rem 1.4rem;text-align:center;position:relative}
@@ -139,7 +173,7 @@ section{padding:3.6rem 0}
 .step p{color:var(--ink-soft);font-size:.88rem;font-weight:300}
 /* ============ ABOUT ============ */
 .about{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:center}
-.about-img{border-radius:22px;box-shadow:var(--shadow);border:2px solid var(--gold);width:100%;max-height:460px;object-fit:cover}
+.about-img{border-radius:22px;box-shadow:var(--shadow);border:2px solid var(--gold);width:100%;max-height:460px;object-fit:cover;will-change:transform}
 .about h3{font-family:var(--serif);font-size:1.8rem;margin:.5rem 0 .8rem}
 .about p{color:var(--ink-soft);font-weight:300;margin-bottom:1rem}
 .about .quote{border-left:3px solid var(--gold);padding:.4rem 0 .4rem 1.1rem;font-style:italic;font-family:var(--serif);font-size:1.05rem;color:var(--berry)}
@@ -165,10 +199,14 @@ footer b{color:var(--gold-deep)}
   .nav-links.open{display:flex}
   .burger{display:block}
   .about{grid-template-columns:1fr}
+  .arch-wrap{grid-template-columns:1fr}
+  .arch-stage{height:320px}
 }
 </style>
 </head>
 <body>
+
+<canvas id="genCanvas"></canvas>
 
 <nav>
   <div class="nav-in">
@@ -176,8 +214,9 @@ footer b{color:var(--gold-deep)}
     <div class="nav-sp"></div>
     <div class="nav-links" id="navLinks">
       <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+      <a href="#arch" data-i18n="nav_arch">Design Studio</a>
       <a href="#how" data-i18n="nav_how">How It Works</a>
-      <a href="#about" data-i18n="nav_about">About</a>
       <a href="#faq" data-i18n="nav_faq">FAQ</a>
       <a class="nav-cta" href="#contact" data-i18n="nav_book">Book Now</a>
     </div>
@@ -188,17 +227,18 @@ footer b{color:var(--gold-deep)}
 </nav>
 
 <header class="hero" id="top">
+  <canvas id="heroGL"></canvas>
   <div class="wrap">
     <div class="kicker" data-i18n="hero_kicker">New Jersey · Party &amp; Event Decor</div>
     <h1 data-i18n="hero_title">Celebrations that <em>pop</em> with <em>personality</em></h1>
     <p class="sub" data-i18n="hero_sub">Hand-crafted balloon arches, themed party styling and custom decor for birthdays, weddings, baby showers, graduations and quinceañeras — designed with love by Kristina Duran.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="#contact" data-i18n="hero_cta1">Book Your Event</a>
-      <a class="btn btn-ghost" href="#services" data-i18n="hero_cta2">See Our Work</a>
+      <a class="btn btn-ghost" href="#pricing" data-i18n="hero_cta2">See Our Prices</a>
     </div>
     <div class="hero-badges">
       <div class="hb"><div class="n" data-i18n="badge1n">100+</div><div class="l" data-i18n="badge1l">Events Styled</div></div>
-      <div class="hb"><div class="n" data-i18n="badge2n">6+</div><div class="l" data-i18n="badge2l">Themes &amp; Styles</div></div>
+      <div class="hb"><div class="n" data-i18n="badge2n">$75</div><div class="l" data-i18n="badge2l">Below Market Avg</div></div>
       <div class="hb"><div class="n" data-i18n="badge3n">100%</div><div class="l" data-i18n="badge3l">Custom Designs</div></div>
     </div>
     <img class="hero-img" src="assets/hero-arch.png" alt="Organic balloon arch with florals">
@@ -213,6 +253,42 @@ footer b{color:var(--gold-deep)}
       <p data-i18n="services_p">Every celebration is unique — every design is made to order. Here's a taste of what we create.</p>
     </div>
     <div class="grid g3" id="catalogGrid"></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k" data-i18n="pricing_k">Honest Pricing</div>
+      <h2 data-i18n="pricing_h">Market Price vs. Our Price</h2>
+      <p data-i18n="pricing_p">We keep our prices $75 below typical market rates — same quality, smarter budget.</p>
+    </div>
+    <div class="grid g3" id="pricingGrid"></div>
+    <div class="note-box" data-i18n="pricing_note">All packages start at listed price + travel. Custom quotes always free.</div>
+  </div>
+</section>
+
+<section id="arch">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k" data-i18n="arch_k">Design Studio</div>
+      <h2 data-i18n="arch_h">Build Your Arch — Live</h2>
+      <p data-i18n="arch_p">Every arch we build starts from parameters — colors, size, fullness. Play with ours.</p>
+    </div>
+    <div class="arch-wrap">
+      <div class="arch-stage">
+        <canvas id="archCanvas"></canvas>
+        <div class="arch-hint" data-i18n="arch_hint">Move your mouse to sway the arch</div>
+      </div>
+      <div class="arch-controls">
+        <label>🎈 <span data-i18n="arch_balloons">Balloons</span> <output id="balloonOut">28</output></label>
+        <input type="range" id="balloonRange" min="12" max="60" value="28">
+        <label>🌀 <span data-i18n="arch_fullness">Fullness</span> <output id="fullOut">0.85</output></label>
+        <input type="range" id="fullRange" min="0.4" max="1.3" step="0.05" value="0.85">
+        <button class="shuffle-btn" id="shuffleBtn">🎨 <span data-i18n="arch_shuffle">Shuffle Colors</span></button>
+        <p class="arch-note" data-i18n="arch_note">This is parametric design in action — the arch is generated from numbers, just like your custom quote. Tell us your theme and we'll design yours.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -257,16 +333,20 @@ footer b{color:var(--gold-deep)}
         <p data-i18n="faq1_a">As soon as you have your date! Popular weekends book up fast — 2–3 weeks ahead is ideal, and we'll always try to fit in last-minute requests when we can.</p>
       </details>
       <details>
-        <summary data-i18n="faq2_q">What areas do you serve?</summary>
-        <p data-i18n="faq2_a">We're based in New Jersey and serve events across the state. Message us with your location and we'll confirm availability.</p>
+        <summary data-i18n="faq2_q">Why is your price lower than market?</summary>
+        <p data-i18n="faq2_a">We keep our overhead lean and pass the savings to you — typically $75+ below what similar decorators charge, with the same quality materials and craftsmanship.</p>
       </details>
       <details>
-        <summary data-i18n="faq3_q">Do you do custom themes?</summary>
-        <p data-i18n="faq3_a">Yes! Custom themes are our favorite. Send us your inspiration — characters, colors, photos — and we'll design something one-of-a-kind.</p>
+        <summary data-i18n="faq3_q">What areas do you serve?</summary>
+        <p data-i18n="faq3_a">We're based in New Jersey and serve events across the state. Message us with your location and we'll confirm availability.</p>
       </details>
       <details>
-        <summary data-i18n="faq4_q">Do you set up and take down?</summary>
-        <p data-i18n="faq4_a">Absolutely. We handle full setup before your event and clean take-down after — all you have to do is show up and celebrate.</p>
+        <summary data-i18n="faq4_q">Do you do custom themes?</summary>
+        <p data-i18n="faq4_a">Yes! Custom themes are our favorite. Send us your inspiration — characters, colors, photos — and we'll design something one-of-a-kind.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq5_q">Do you set up and take down?</summary>
+        <p data-i18n="faq5_a">Absolutely. We handle full setup before your event and clean take-down after — all you have to do is show up and celebrate.</p>
       </details>
     </div>
   </div>
@@ -289,17 +369,27 @@ footer b{color:var(--gold-deep)}
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script>
 /* ============ I18N ============ */
 const I18N = {
   en: {
-    nav_services:"Services", nav_how:"How It Works", nav_about:"About", nav_faq:"FAQ", nav_book:"Book Now",
+    nav_services:"Services", nav_pricing:"Pricing", nav_arch:"Design Studio", nav_how:"How It Works", nav_faq:"FAQ", nav_book:"Book Now",
     hero_kicker:"New Jersey · Party & Event Decor",
     hero_title:"Celebrations that <em>pop</em> with <em>personality</em>",
     hero_sub:"Hand-crafted balloon arches, themed party styling and custom decor for birthdays, weddings, baby showers, graduations and quinceañeras — designed with love by Kristina Duran.",
-    hero_cta1:"Book Your Event", hero_cta2:"See Our Work",
-    badge1n:"100+", badge1l:"Events Styled", badge2n:"6+", badge2l:"Themes & Styles", badge3n:"100%", badge3l:"Custom Designs",
+    hero_cta1:"Book Your Event", hero_cta2:"See Our Prices",
+    badge1n:"100+", badge1l:"Events Styled", badge2n:"$75", badge2l:"Below Market Avg", badge3n:"100%", badge3l:"Custom Designs",
     services_k:"Portfolio", services_h:"Our Decor Services", services_p:"Every celebration is unique — every design is made to order. Here's a taste of what we create.",
+    pricing_k:"Honest Pricing", pricing_h:"Market Price vs. Our Price", pricing_p:"We keep our prices $75 below typical market rates — same quality, smarter budget.",
+    pricing_market:"Market", pricing_ours:"Our Price", pricing_travel:"+ travel", pricing_save:"Save $", pricing_book:"Book This",
+    pricing_note:"All packages start at listed price + travel. Custom quotes always free.",
+    arch_k:"Design Studio", arch_h:"Build Your Arch — Live", arch_p:"Every arch we build starts from parameters — colors, size, fullness. Play with ours.",
+    arch_balloons:"Balloons", arch_fullness:"Fullness", arch_shuffle:"Shuffle Colors", arch_hint:"Move your mouse to sway the arch",
+    arch_note:"This is parametric design in action — the arch is generated from numbers, just like your custom quote. Tell us your theme and we'll design yours.",
     how_k:"Simple Process", how_h:"How It Works",
     how1_h:"Tell Us About It", how1_p:"Message us on WhatsApp with your date, location and theme.",
     how2_h:"We Design It", how2_p:"Get a custom quote and a design plan tailored to your celebration.",
@@ -310,22 +400,29 @@ const I18N = {
     about_q:"\"Decorations aren't just balloons and flowers — they're the feeling your guests remember.\"",
     faq_k:"Good to Know", faq_h:"Frequently Asked Questions",
     faq1_q:"How far in advance should I book?", faq1_a:"As soon as you have your date! Popular weekends book up fast — 2–3 weeks ahead is ideal, and we'll always try to fit in last-minute requests when we can.",
-    faq2_q:"What areas do you serve?", faq2_a:"We're based in New Jersey and serve events across the state. Message us with your location and we'll confirm availability.",
-    faq3_q:"Do you do custom themes?", faq3_a:"Yes! Custom themes are our favorite. Send us your inspiration — characters, colors, photos — and we'll design something one-of-a-kind.",
-    faq4_q:"Do you set up and take down?", faq4_a:"Absolutely. We handle full setup before your event and clean take-down after — all you have to do is show up and celebrate.",
+    faq2_q:"Why is your price lower than market?", faq2_a:"We keep our overhead lean and pass the savings to you — typically $75+ below what similar decorators charge, with the same quality materials and craftsmanship.",
+    faq3_q:"What areas do you serve?", faq3_a:"We're based in New Jersey and serve events across the state. Message us with your location and we'll confirm availability.",
+    faq4_q:"Do you do custom themes?", faq4_a:"Yes! Custom themes are our favorite. Send us your inspiration — characters, colors, photos — and we'll design something one-of-a-kind.",
+    faq5_q:"Do you set up and take down?", faq5_a:"Absolutely. We handle full setup before your event and clean take-down after — all you have to do is show up and celebrate.",
     contact_h:"Let's Plan Your Celebration 🎉", contact_p:"Ready to book or just want a quote? Send us a message — we'd love to make your event unforgettable.",
     contact_btn:"Message on WhatsApp", contact_note:"Instagram: @durandecorations · Serving New Jersey & nearby",
-    book:"Book this design", from:"Custom designs — starting at"
+    book:"Book this design"
   },
   es: {
-    nav_services:"Servicios", nav_how:"Cómo Funciona", nav_about:"Sobre Mí", nav_faq:"Preguntas", nav_book:"Reserva",
+    nav_services:"Servicios", nav_pricing:"Precios", nav_arch:"Estudio de Diseño", nav_how:"Cómo Funciona", nav_faq:"Preguntas", nav_book:"Reserva",
     hero_kicker:"Nueva Jersey · Decoración de Fiestas y Eventos",
     hero_title:"Celebraciones con <em>estilo</em> y <em>personalidad</em>",
     hero_sub:"Arcos de globos hechos a mano, fiestas temáticas y decoración personalizada para cumpleaños, bodas, baby showers, graduaciones y quinceañeras — diseñados con amor por Kristina Duran.",
-    hero_cta1:"Reserva Tu Evento", hero_cta2:"Ver Nuestro Trabajo",
-    badge1n:"100+", badge1l:"Eventos Decorados", badge2n:"6+", badge2l:"Temas y Estilos", badge3n:"100%", badge3l:"Diseños Personalizados",
+    hero_cta1:"Reserva Tu Evento", hero_cta2:"Ver Nuestros Precios",
+    badge1n:"100+", badge1l:"Eventos Decorados", badge2n:"$75", badge2l:"Bajo el Precio del Mercado", badge3n:"100%", badge3l:"Diseños Personalizados",
     services_k:"Portafolio", services_h:"Nuestros Servicios", services_p:"Cada celebración es única — cada diseño se hace a pedido. Esto es una muestra de lo que creamos.",
-    how_k:"Proceso Simple", how_h:"Cómo Funciona",
+    pricing_k:"Precios Claros", pricing_h:"Precio de Mercado vs. Nuestro Precio", pricing_p:"Mantenemos nuestros precios $75 por debajo del mercado — misma calidad, mejor presupuesto.",
+    pricing_market:"Mercado", pricing_ours:"Nuestro Precio", pricing_travel:"+ viaje", pricing_save:"Ahorra $", pricing_book:"Reservar",
+    pricing_note:"Todos los paquetes comienzan al precio indicado + viaje. Cotizaciones personalizadas gratis.",
+    arch_k:"Estudio de Diseño", arch_h:"Diseña Tu Arco — En Vivo", arch_p:"Cada arco que creamos empieza con parámetros — colores, tamaño, plenitud. Juega con el nuestro.",
+    arch_balloons:"Globos", arch_fullness:"Plenitud", arch_shuffle:"Mezclar Colores", arch_hint:"Mueve el mouse para balancear el arco",
+    arch_note:"Esto es diseño paramétrico en acción — el arco se genera con números, igual que tu cotización personalizada. Cuéntanos tu tema y diseñamos el tuyo.",
+    how_k:"Proceso Simple", how_h:"CÓMO FUNCIONA",
     how1_h:"Cuéntanos", how1_p:"Escríbenos por WhatsApp con tu fecha, lugar y tema.",
     how2_h:"Lo Diseñamos", how2_p:"Recibe una cotización y un plan de diseño a tu medida.",
     how3_h:"Lo Montamos", how3_p:"Entregamos, instalamos y decoramos todo — tú solo disfrutas la fiesta.",
@@ -335,33 +432,32 @@ const I18N = {
     about_q:"\"La decoración no es solo globos y flores — es el sentimiento que tus invitados recuerdan.\"",
     faq_k:"Bueno Saber", faq_h:"Preguntas Frecuentes",
     faq1_q:"¿Con cuánta anticipación debo reservar?", faq1_a:"¡En cuanto tengas tu fecha! Los fines de semana populares se reservan rápido — 2–3 semanas antes es ideal, y siempre intentamos acomodar pedidos de última hora cuando podemos.",
-    faq2_q:"¿Qué áreas cubren?", faq2_a:"Estamos basados en Nueva Jersey y servimos eventos en todo el estado. Escríbenos con tu ubicación y confirmamos disponibilidad.",
-    faq3_q:"¿Hacen temas personalizados?", faq3_a:"¡Sí! Los temas personalizados son nuestros favoritos. Envíanos tu inspiración — personajes, colores, fotos — y diseñamos algo único.",
-    faq4_q:"¿Instalan y recogen la decoración?", faq4_a:"Claro. Nos encargamos del montaje antes de tu evento y del desmontaje después — tú solo llega y celebra.",
+    faq2_q:"¿Por qué tu precio es más bajo que el mercado?", faq2_a:"Mantenemos nuestros gastos bajos y te pasamos el ahorro — típicamente $75 o más por debajo de decoradores similares, con la misma calidad de materiales y artesanía.",
+    faq3_q:"¿Qué áreas cubren?", faq3_a:"Estamos basados en Nueva Jersey y servimos eventos en todo el estado. Escríbenos con tu ubicación y confirmamos disponibilidad.",
+    faq4_q:"¿Hacen temas personalizados?", faq4_a:"¡Sí! Los temas personalizados son nuestros favoritos. Envíanos tu inspiración — personajes, colores, fotos — y diseñamos algo único.",
+    faq5_q:"¿Instalan y recogen la decoración?", faq5_a:"Claro. Nos encargamos del montaje antes de tu evento y del desmontaje después — tú solo llega y celebra.",
     contact_h:"Planifiquemos Tu Celebración 🎉", contact_p:"¿Lista para reservar o quieres una cotización? Escríbenos — nos encantaría hacer tu evento inolvidable.",
     contact_btn:"Escribir por WhatsApp", contact_note:"Instagram: @durandecorations · Servimos Nueva Jersey y alrededores",
-    book:"Reservar este diseño", from:"Diseños personalizados — desde"
+    book:"Reservar este diseño"
   }
 };
 let lang = localStorage.getItem('dd_lang') || 'en';
-let catalog = [];
+let catalog = [], pricing = [];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function t(key){ return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key; }
 
 function applyLang(){
   document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const k = el.getAttribute('data-i18n');
-    if(el.tagName === 'A'){ el.innerHTML = t(k); } else { el.innerHTML = t(k); }
-  });
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.getAttribute('data-i18n')); });
   document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
-  renderCatalog();
+  renderCatalog(); renderPricing();
 }
 
 /* ============ CATALOG ============ */
 function tagLabel(tag){
   if(!tag) return '';
-  const map = {best: lang==='en'?'Bestseller':'Favorito', new: lang==='en'?'New':'Nuevo', premium: lang==='en'?'Premium':'Premium'};
+  const map = {best: lang==='en'?'Bestseller':'Favorito', new: lang==='en'?'New':'Nuevo', premium: lang==='en'?'Premium':'Premium', popular: lang==='en'?'Popular':'Popular'};
   return `<span class="tag ${tag}">${map[tag]}</span>`;
 }
 function renderCatalog(){
@@ -379,22 +475,254 @@ function renderCatalog(){
     </article>`).join('');
 }
 
-/* ============ INIT ============ */
-fetch('catalog.json').then(r=>r.json()).then(d=>{ catalog=d; applyLang(); }).catch(()=>{ catalog=[]; applyLang(); });
+/* ============ PRICING ============ */
+function renderPricing(){
+  const grid = document.getElementById('pricingGrid');
+  grid.innerHTML = pricing.map(p => {
+    const save = p.market - p.duran;
+    const feats = (lang==='en'?p.feats:p.feats_es).map(f=>`<li>${f}</li>`).join('');
+    return `
+    <article class="price-card">
+      <div class="save-badge">${t('pricing_save')}${save}</div>
+      <div class="cat">${lang==='en'?p.cat:p.cat_es||''}</div>
+      <h3>${lang==='en'?p.name:p.name_es}</h3>
+      <div class="market"><span>${t('pricing_market')}:</span> <s>$${p.market}+</s></div>
+      <div class="duran">$${p.duran}<span>${t('pricing_travel')}</span></div>
+      <ul class="price-feats">${feats}</ul>
+      <a class="btn btn-primary" href="#contact">${t('pricing_book')}</a>
+    </article>`;
+  }).join('');
+}
 
-document.getElementById('langBtn').addEventListener('click', ()=>{
+/* ============ SCROLL PHYSICS (Lenis) ============ */
+let lenis = null;
+if(!reduceMotion && typeof Lenis !== 'undefined'){
+  lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if(id.length > 1){ e.preventDefault(); const el = document.querySelector(id); if(el) lenis.scrollTo(el, { offset: -72 }); }
+  }));
+}
+
+/* ============ GSAP MOTION ============ */
+function initMotion(){
+  if(reduceMotion || typeof gsap === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('.hero .kicker', { y: 30, opacity: 0, duration: .8, delay: .15 })
+    .from('.hero h1', { y: 60, opacity: 0, duration: 1.1 }, '-=.45')
+    .from('.hero .sub', { y: 40, opacity: 0, duration: .9 }, '-=.7')
+    .from('.hero-ctas .btn', { y: 26, opacity: 0, duration: .7, stagger: .1 }, '-=.6')
+    .from('.hero-badges .hb', { y: 20, opacity: 0, duration: .7, stagger: .1 }, '-=.5')
+    .from('.hero-img', { y: 70, opacity: 0, duration: 1.2, ease: 'power2.out' }, '-=.6');
+
+  gsap.utils.toArray('section').forEach(sec => {
+    const heads = sec.querySelectorAll('.sec-head > *');
+    if(heads.length) gsap.from(heads, { scrollTrigger: { trigger: sec, start: 'top 78%' }, y: 40, opacity: 0, duration: .85, stagger: .12, ease: 'power2.out' });
+  });
+  gsap.utils.toArray('.card, .price-card, .step').forEach(el => {
+    gsap.from(el, { scrollTrigger: { trigger: el, start: 'top 88%' }, y: 50, opacity: 0, duration: .75, ease: 'power2.out' });
+  });
+  gsap.to('.hero-img', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.about-img', { yPercent: -12, ease: 'none', scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.utils.toArray('.about .kicker, .about h3, .about p, .about .quote').forEach((el, i) => {
+    gsap.from(el, { scrollTrigger: { trigger: '#about', start: 'top 72%' }, x: i%2? 40: -40, opacity: 0, duration: .8, delay: i*.12, ease: 'power2.out' });
+  });
+}
+
+/* ============ WEBGL HERO (Three.js) ============ */
+function initWebGL(){
+  const canvas = document.getElementById('heroGL');
+  if(!canvas || reduceMotion || typeof THREE === 'undefined') return;
+  const isMobile = innerWidth < 768;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(innerWidth, innerHeight);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, .1, 100);
+  camera.position.z = 14;
+  scene.add(new THREE.AmbientLight(0xffffff, .75));
+  const dir = new THREE.DirectionalLight(0xffffff, 1.2); dir.position.set(4, 6, 5); scene.add(dir);
+  const pnt = new THREE.PointLight(0xffd9b3, .9, 30); pnt.position.set(-6, -2, 6); scene.add(pnt);
+  const palette = [0xE8A0BF, 0xF4C7A1, 0xC9A24B, 0xD8C8EC, 0xA8D8D0, 0xF0E6D2, 0xB0576E];
+  const balloons = [];
+  const count = isMobile ? 12 : 24;
+  for(let i=0;i<count;i++){
+    const r = .45 + Math.random()*.85;
+    const mat = new THREE.MeshPhongMaterial({ color: palette[i%palette.length], shininess: 90, specular: 0xffffff, transparent: true, opacity: .9 });
+    const m = new THREE.Mesh(new THREE.SphereGeometry(r, 22, 22), mat);
+    m.position.set((Math.random()-.5)*22, (Math.random()-.5)*12, -3 + Math.random()*4);
+    const str = new THREE.Mesh(new THREE.CylinderGeometry(.012, .012, r*2.8), new THREE.MeshBasicMaterial({ color: 0x999999 }));
+    str.position.y = -r*1.6;
+    m.add(str);
+    m.userData = { baseY: m.position.y, speed: .3+Math.random()*.5, amp: .3+Math.random()*.55, phase: Math.random()*Math.PI*2 };
+    scene.add(m); balloons.push(m);
+  }
+  let scY = 0;
+  (function tick(){
+    const t = performance.now()/1000;
+    balloons.forEach(b => {
+      b.position.y = b.userData.baseY + Math.sin(t*b.userData.speed + b.userData.phase)*b.userData.amp;
+      b.rotation.x = Math.sin(t*.4 + b.userData.phase)*.12;
+      b.rotation.z = Math.cos(t*.35 + b.userData.phase)*.12;
+    });
+    if(lenis) scY += ((lenis.scroll||0) - scY)*.06; else scY = window.scrollY||0;
+    camera.position.y = scY * .004;
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  })();
+  window.addEventListener('resize', () => {
+    camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+}
+
+/* ============ GENERATIVE CANVAS ============ */
+function initGen(){
+  const cv = document.getElementById('genCanvas');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  let W, H, parts = [];
+  function resize(){
+    W = cv.width = innerWidth; H = cv.height = innerHeight;
+    const N = innerWidth < 768 ? 22 : 44;
+    parts = [];
+    for(let i=0;i<N;i++) parts.push({ x: Math.random()*W, y: Math.random()*H, r: 6+Math.random()*26, vx: (Math.random()-.5)*.16, vy: (Math.random()-.5)*.16, hue: 315+Math.random()*85, sp: .3+Math.random()*.6, ph: Math.random()*Math.PI*2 });
+  }
+  resize(); addEventListener('resize', resize);
+  let scrollVel = 0, lastY = 0;
+  (function tick(){
+    ctx.clearRect(0,0,W,H);
+    const sy = window.scrollY || 0;
+    scrollVel += (sy - lastY) * .02; scrollVel *= .88; lastY = sy;
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const now = performance.now()/1000;
+    parts.forEach(p => {
+      p.x += p.vx; p.y += p.vy + scrollVel;
+      if(p.x < -p.r) p.x = W+p.r; if(p.x > W+p.r) p.x = -p.r;
+      if(p.y < -p.r) p.y = H+p.r; if(p.y > H+p.r) p.y = -p.r;
+      const a = .08 + .05*Math.sin(now*p.sp + p.ph);
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = dark ? `hsla(${p.hue},45%,68%,${a})` : `hsla(${p.hue},60%,74%,${a})`;
+      ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x-p.r*.3, p.y-p.r*.3, p.r*.22, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(255,255,255,.3)'; ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  })();
+}
+
+/* ============ PARAMETRIC ARCH STUDIO ============ */
+function initArch(){
+  const cv = document.getElementById('archCanvas');
+  if(!cv) return;
+  const ctx = cv.getContext('2d');
+  const PALETTES = [
+    ['#E8A0BF','#F4C7A1','#C9A24B','#D8C8EC','#A8D8D0','#F0E6D2'],
+    ['#B0576E','#8E3F52','#F3D9D4','#C9A24B','#F0E6D2','#D8C8EC'],
+    ['#5B8DEF','#7FB3E8','#F4C7A1','#F0E6D2','#D8C8EC','#C9A24B'],
+    ['#2FBF9F','#A8D8D0','#F4C7A1','#F0E6D2','#D8C8EC','#B0576E']
+  ];
+  let params = { count: 28, fullness: .85, palette: PALETTES[0], paletteIdx: 0 };
+  let sway = { x: 0, target: 0 };
+  function resize(){
+    const dpr = Math.min(devicePixelRatio, 2);
+    cv.width = cv.offsetWidth * dpr; cv.height = cv.offsetHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize(); addEventListener('resize', resize);
+  function shade(hex, pct){
+    const n = parseInt(hex.slice(1), 16);
+    const r = Math.max(0, Math.min(255, (n>>16) + pct));
+    const g = Math.max(0, Math.min(255, ((n>>8)&255) + pct));
+    const b = Math.max(0, Math.min(255, (n&255) + pct));
+    return `rgb(${r},${g},${b})`;
+  }
+  function draw(){
+    const w = cv.offsetWidth, h = cv.offsetHeight;
+    ctx.clearRect(0, 0, w, h);
+    const cx = w/2, baseY = h*.9, halfW = Math.min(w*.4, 250);
+    const topY = h*.3;
+    const cpx = cx + sway.x*46;
+    const cpy = topY - params.fullness*110;
+    const P = t => { const u = 1-t; return { x: u*u*cx + 2*u*t*cpx + t*t*(cx+halfW), y: u*u*baseY + 2*u*t*cpy + t*t*baseY }; };
+    const T = t => { const u = 1-t; return { x: 2*u*(cpx-cx) + 2*t*((cx+halfW)-cpx), y: 2*u*(cpy-baseY) + 2*t*(baseY-cpy) }; };
+    const now = performance.now()/1000;
+    const n = params.count;
+    for(let i=0;i<=n;i++){
+      const t = i/n;
+      const p = P(t), tg = T(t);
+      const len = Math.hypot(tg.x, tg.y) || 1;
+      const px = -tg.y/len, py = tg.x/len;
+      const jitter = Math.sin(i*2.7 + now*.5)*5;
+      const off = Math.abs(Math.sin(t*Math.PI*1.4)) * 14 + jitter;
+      const x = p.x + px*off;
+      const y = p.y + py*off - Math.sin(now*.8 + i*.35)*3;
+      const r = 9 + (14)*Math.abs(Math.sin(t*Math.PI*1.35 + i*.55)) + 4*Math.sin(i*1.3);
+      const col = params.palette[i % params.palette.length];
+      ctx.strokeStyle = 'rgba(120,110,120,.45)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(x, y + r*.7); ctx.lineTo(x + Math.sin(i*1.7)*4, y + r*2.1); ctx.stroke();
+      const g = ctx.createRadialGradient(x - r*.35, y - r*.35, r*.15, x, y, r);
+      g.addColorStop(0, 'rgba(255,255,255,.9)');
+      g.addColorStop(.4, col);
+      g.addColorStop(1, shade(col, -26));
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(x - r*.09, y + r*.72); ctx.lineTo(x + r*.09, y + r*.72); ctx.lineTo(x, y + r*1.1);
+      ctx.closePath(); ctx.fillStyle = shade(col, -34); ctx.fill();
+    }
+    // sparkles
+    for(let i=0;i<10;i++){
+      const sx = cx + Math.sin(i*3.1 + now*.6)*(halfW*.8);
+      const sy = topY - 60 + Math.sin(i*2.3 + now*.9)*50 + params.fullness*30;
+      const sa = .25 + .3*Math.sin(now*1.4 + i);
+      ctx.beginPath(); ctx.arc(sx, sy, 2, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,220,150,${Math.max(0,sa)})`; ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  if(!reduceMotion) requestAnimationFrame(draw); else { draw(); }
+  const stage = document.querySelector('.arch-stage');
+  stage.addEventListener('mousemove', e => {
+    const rect = stage.getBoundingClientRect();
+    sway.target = ((e.clientX - rect.left)/rect.width - .5) * 2;
+  });
+  stage.addEventListener('mouseleave', () => sway.target = 0);
+  const balloonRange = document.getElementById('balloonRange');
+  const fullRange = document.getElementById('fullRange');
+  balloonRange.addEventListener('input', () => { params.count = +balloonRange.value; document.getElementById('balloonOut').textContent = balloonRange.value; });
+  fullRange.addEventListener('input', () => { params.fullness = +fullRange.value; document.getElementById('fullOut').textContent = fullRange.value; });
+  document.getElementById('shuffleBtn').addEventListener('click', () => {
+    params.paletteIdx = (params.paletteIdx + 1) % PALETTES.length;
+    params.palette = PALETTES[params.paletteIdx];
+  });
+  (function swayLoop(){ sway.x += (sway.target - sway.x)*.06; requestAnimationFrame(swayLoop); })();
+}
+
+/* ============ INIT ============ */
+Promise.all([
+  fetch('catalog.json').then(r=>r.json()).catch(()=>[]),
+  fetch('pricing.json').then(r=>r.json()).catch(()=>[])
+]).then(([c,p]) => { catalog = c; pricing = p; applyLang(); initMotion(); });
+
+initGen(); initWebGL(); initArch();
+
+document.getElementById('langBtn').addEventListener('click', () => {
   lang = lang==='en'?'es':'en';
   localStorage.setItem('dd_lang', lang);
   applyLang();
 });
-document.getElementById('themeBtn').addEventListener('click', ()=>{
+document.getElementById('themeBtn').addEventListener('click', () => {
   const cur = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
   document.documentElement.setAttribute('data-theme', cur);
   localStorage.setItem('dd_theme', cur);
 });
 if(localStorage.getItem('dd_theme')==='dark') document.documentElement.setAttribute('data-theme','dark');
 
-document.getElementById('burger').addEventListener('click', ()=>{
+document.getElementById('burger').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('burger').classList.toggle('open');
 });
