@@ -1,7 +1,7 @@
 # Duran Decorations — Premium Update Plan (handoff for next dev model)
 
-> Status: **PLANNED** · Owner: Kristina Duran (via Jayto) · Repo: `JelfferyDuran/duran-decorations` · Live: https://jelfferyduran.github.io/duran-decorations/
-> This doc is the single source of truth for the next phase. Execute phases in order. Every phase ends with the verification checklist passed.
+> Status: **COMPLETED (Phases A–D executed 2026-08-22)** · Owner: Kristina Duran (via Jayto) · Repo: `JelfferyDuran/duran-decorations` · Live: https://jelfferyduran.github.io/duran-decorations/
+> This doc was the handoff plan. The premium upgrade (quote modal + estimator, add-ons, lightbox, testimonials, module split, CI, a11y, presets, preloader) is implemented — see README for the new architecture and data schemas. Remaining: replace placeholders in `js/config.js` (number, IG, LLC name) and add real testimonials.
 
 ---
 
