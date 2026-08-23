@@ -1,8 +1,112 @@
 [
-  {"id":"arch","name":"Organic Balloon Arch","name_es":"Arco Orgánico de Globos","cat":"Signature","cat_es":"Firma","img":"assets/hero-arch.png","desc":"Hand-crafted organic arches with florals and greenery — the wow factor for any celebration.","desc_es":"Arcos orgánicos hechos a mano con flores y follaje — el factor wow para cualquier celebración.","tag":"best"},
-  {"id":"kids","name":"Themed Kids Parties","name_es":"Fiestas Infantiles Temáticas","cat":"Kids","cat_es":"Infantiles","img":"assets/kids-fortnite.png","desc":"Fortnite, princesses, dinosaurs — custom themes with matching tablescapes, toppers and balloons.","desc_es":"Fortnite, princesas, dinosaurios — temas personalizados con mesas, toppers y globos a juego.","tag":""},
-  {"id":"wedding","name":"Weddings & Elegant Events","name_es":"Bodas y Eventos Elegantes","cat":"Weddings","cat_es":"Bodas","img":"assets/wedding-elegant.png","desc":"Romantic pillars, draping and centerpieces that set the tone for your big day.","desc_es":"Columnas románticas, telas y centros de mesa que marcan el tono de tu gran día.","tag":"premium"},
-  {"id":"baby","name":"Baby Showers","name_es":"Baby Showers","cat":"Celebrations","cat_es":"Celebraciones","img":"assets/baby-shower.png","desc":"Soft pastel garlands, diaper cakes and sweet welcome signs for your little one.","desc_es":"Guirnaldas pastel, tortas de pañales y letreros de bienvenida para tu pequeño.","tag":"new"},
-  {"id":"grad","name":"Graduation Parties","name_es":"Fiestas de Graduación","cat":"Celebrations","cat_es":"Celebraciones","img":"assets/graduation.png","desc":"Gold and black columns, confetti and backdrops worthy of the big milestone.","desc_es":"Columnas doradas y negras, confeti y fondos dignos del gran logro.","tag":""},
-  {"id":"quince","name":"Quinceañeras","name_es":"Quinceañeras","cat":"Signature","cat_es":"Firma","img":"assets/quince.png","desc":"Glamorous pink & gold arches, glitter backdrops and candle-lit elegance.","desc_es":"Arcos glamorosos en rosa y dorado, fondos con brillo y elegancia a la luz de velas.","tag":"premium"}
+  {
+    "id": "organic-arch-sequin",
+    "name": "Pastel Organic Arch + Sequin Wall",
+    "name_es": "Arco Orgánico Pastel + Pared de Lentejuelas",
+    "cat": "Arches",
+    "cat_es": "Arcos",
+    "img": "assets/organic-arch-sequin.jpg",
+    "desc": "Lavender, cream, dusty pink and periwinkle organic arch with an iridescent sequin wall and custom neon. Our signature look.",
+    "desc_es": "Arco orgánico en lavanda, crema, rosa empolvado y azul — con pared de lentejuelas iridiscentes y letrero de neón personalizado. Nuestra firma.",
+    "tag": "best"
+  },
+  {
+    "id": "judah-neon-booth",
+    "name": "Neon Photo Booth",
+    "name_es": "Cabina de Fotos con Neón",
+    "cat": "Photo Booths",
+    "cat_es": "Cabinas de Fotos",
+    "img": "assets/judah-neon-booth.jpg",
+    "desc": "Navy, white and emerald garlands with gold foil name balloons and custom neon — a photo moment guests won't forget.",
+    "desc_es": "Guirnaldas en azul marino, blanco y esmeralda con globos dorados de nombre y neón personalizado — un momento que tus invitados no olvidarán.",
+    "tag": "premium"
+  },
+  {
+    "id": "winnie-the-pooh",
+    "name": "Winnie the Pooh Backdrop",
+    "name_es": "Fondo Winnie the Pooh",
+    "cat": "Backdrops",
+    "cat_es": "Fondos",
+    "img": "assets/winnie-the-pooh.jpg",
+    "desc": "Custom slate backdrop with gold script, character cutouts and classic cream, blue and green balloons. Custom signage included.",
+    "desc_es": "Fondo personalizado con letras doradas, recortes de personajes y globos clásicos en crema, azul y verde. Letrero personalizado incluido.",
+    "tag": "new"
+  },
+  {
+    "id": "cowgirl-birthday",
+    "name": "Cowgirl Party",
+    "name_es": "Fiesta Vaquera",
+    "cat": "Themed Parties",
+    "cat_es": "Fiestas Temáticas",
+    "img": "assets/cowgirl-birthday.jpg",
+    "desc": "Cowhide backdrop, sunflowers and cow-print balloons — rustic charm for any little cowgirl.",
+    "desc_es": "Fondo de piel de vaca, girasoles y globos estampados — encanto rústico para cualquier pequeña vaquera.",
+    "tag": ""
+  },
+  {
+    "id": "spiderman-party",
+    "name": "Spider-Man Party",
+    "name_es": "Fiesta de Spider-Man",
+    "cat": "Themed Parties",
+    "cat_es": "Fiestas Temáticas",
+    "img": "assets/spiderman-party.jpg",
+    "desc": "Full themed setup: comic skyline backdrop, red/blue/black balloon arch and matching superhero table.",
+    "desc_es": "Montaje temático completo: fondo de ciudad estilo cómic, arco de globos rojo/azul/negro y mesa de superhéroe a juego.",
+    "tag": "popular"
+  },
+  {
+    "id": "30th-black-gold",
+    "name": "Black & Gold 30th",
+    "name_es": "30 Años Negro y Dorado",
+    "cat": "Milestones",
+    "cat_es": "Fechas Especiales",
+    "img": "assets/30th-black-gold.jpg",
+    "desc": "Glittering gold '30' banner, black/white/metallic gold balloons and the signature 'Aged to Perfection' whiskey balloon.",
+    "desc_es": "Cartel dorado brillante '30', globos negro/blanco/dorado metálico y el clásico globo de whisky 'Aged to Perfection'.",
+    "tag": "premium"
+  },
+  {
+    "id": "boho-arch",
+    "name": "Boho Arch",
+    "name_es": "Arco Boho",
+    "cat": "Arches",
+    "cat_es": "Arcos",
+    "img": "assets/boho-arch.jpg",
+    "desc": "White, gold and peach balloons with dried palm fronds and feathers — boho elegance for your celebration.",
+    "desc_es": "Globos blancos, dorados y melocotón con hojas de palma secas y plumas — elegancia boho para tu celebración.",
+    "tag": "new"
+  },
+  {
+    "id": "silah-dessert-table",
+    "name": "Dessert Table Styling",
+    "name_es": "Mesa de Postres Decorada",
+    "cat": "Dessert Tables",
+    "cat_es": "Mesas de Postres",
+    "img": "assets/silah-dessert-table.jpg",
+    "desc": "Blush, peach and gold balloon wall with custom name script, styled dessert table and fresh florals.",
+    "desc_es": "Pared de globos en rosa, melocotón y dorado con nombre personalizado, mesa de postres estilizada y flores frescas.",
+    "tag": "best"
+  },
+  {
+    "id": "venue-stage",
+    "name": "Stage & Venue Setup",
+    "name_es": "Montaje de Escenario",
+    "cat": "Stage & Venue",
+    "cat_es": "Escenario y Salón",
+    "img": "assets/venue-stage.jpg",
+    "desc": "Double arches in peach, pink and gold — full stage styling for showers and big celebrations.",
+    "desc_es": "Arcos dobles en melocotón, rosa y dorado — estilización completa del escenario para showers y grandes celebraciones.",
+    "tag": ""
+  },
+  {
+    "id": "fresh-prince-90s",
+    "name": "Fresh Prince 90s Party",
+    "name_es": "Fiesta Fresh Prince 90s",
+    "cat": "Themed Parties",
+    "cat_es": "Fiestas Temáticas",
+    "img": "assets/fresh-prince-90s.jpg",
+    "desc": "Retro 90s: graffiti backdrop, boombox, brick phone and a black/purple/teal/yellow arch.",
+    "desc_es": "Retro 90s: fondo graffiti, boombox, teléfono de ladrillo y arco en negro, púrpura, verde y amarillo.",
+    "tag": "popular"
+  }
 ]
