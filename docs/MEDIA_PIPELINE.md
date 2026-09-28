@@ -18,6 +18,17 @@ Every asset must belong to one class:
 
 **Generated concepts are never labeled or presented as completed Duran Decorations client work.**
 
+CI now enforces this for the website portfolio: every `catalog.json` image must have a record in `media/manifests/assets.json`, must be classified `REAL_PORTFOLIO`, and must be `approved` or `published`.
+
+## Current provenance baseline
+
+The first inventory was derived from repository history on 2026-09-28:
+
+- 10 JPG assets introduced by commit `01d0f852a11e2b95ead9ace57018b819de8b7dd2`, whose commit message explicitly labels them **real portfolio (10 events)**. These are currently referenced by `catalog.json` and recorded as `REAL_PORTFOLIO / published`.
+- 6 earlier PNG assets were moved into `assets/demo/` by that same commit when the real portfolio was introduced. Repository history and the historical plan identify this older set as AI/demo imagery. These are recorded as `GENERATED_CONCEPT / archived`.
+
+This is repository-history verification. If the owner later corrects provenance for any individual asset, update the manifest and public catalog together.
+
 ## Recommended future folder model
 
 Do not mass-move current live assets until references are migrated safely.
@@ -119,4 +130,4 @@ For every new real event:
 
 ## Next Step to Build
 
-Create a lightweight media manifest format and the first owner-approved brand/portfolio inventory before starting a recurring media-generation loop.
+Add provenance records for future owner-approved brand assets and require every new media-generation task to write/update its manifest record before the asset can enter a public surface.
