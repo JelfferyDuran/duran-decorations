@@ -69,3 +69,18 @@ Edit **`js/config.js`** — `WA_NUMBER`, `IG_HANDLE`, `WA_MSG`, `AREA`. Single s
 
 ## Business notes
 Strategy, market reference prices, and proposed pricing live in the Obsidian vault at `04-Personal/Duran Decorations/`. Phase plan: `PLAN.md`.
+
+
+## Project operating system
+
+Before making a meaningful implementation change, read:
+
+1. `docs/CURRENT_STATE.md` — verified current state and blockers
+2. `docs/ORCHESTRATION.md` — branch/workstream ownership and merge protocol
+3. `docs/AGENT_HANDOFF.md` — persistent rules for future agents/Hermes
+4. `docs/MEDIA_PIPELINE.md` — real-vs-generated media and provenance rules
+5. `docs/ROADMAP.md` — prioritized infrastructure/product sequence
+
+Use bounded workstream branches (`frontend/`, `booking/`, `data/`, `media/`, `growth/`, `infra/`, `automation/`) instead of using `main` as a scratch branch.
+
+Every meaningful run should end with validation evidence and one **Next Step to Build**.
