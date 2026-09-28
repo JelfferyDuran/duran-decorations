@@ -82,7 +82,47 @@ if (testi) {
   ok(testi.length + ' entries (empty = section hidden)');
 }
 
-/* ---------- 5. asset size sanity ---------- */
+/* ---------- 5. media provenance ---------- */
+console.log('\n[media provenance]');
+const media = readJson('media/manifests/assets.json');
+if (media) {
+  const allowedClasses = new Set(['REAL_PORTFOLIO', 'BRAND_CANONICAL', 'GENERATED_CONCEPT', 'MARKETING_DERIVATIVE', 'ARCHIVE']);
+  const allowedApprovals = new Set(['draft', 'review', 'approved', 'published', 'rejected', 'archived']);
+  const records = Array.isArray(media.assets) ? media.assets : [];
+  if (!Array.isArray(media.assets)) errors.push('media manifest: expected { assets: [...] }');
+
+  const byAsset = new Map();
+  records.forEach((m, i) => {
+    ['asset', 'class', 'approval', 'verification', 'evidence'].forEach(f => {
+      if (m[f] === undefined || m[f] === null || m[f] === '') errors.push('media[' + i + ']: missing "' + f + '"');
+    });
+    if (m.class && !allowedClasses.has(m.class)) errors.push('media[' + i + ']: invalid class "' + m.class + '"');
+    if (m.approval && !allowedApprovals.has(m.approval)) errors.push('media[' + i + ']: invalid approval "' + m.approval + '"');
+    if (m.asset) {
+      if (byAsset.has(m.asset)) errors.push('media manifest: duplicate asset → ' + m.asset);
+      byAsset.set(m.asset, m);
+      if (!fs.existsSync(path.join(ROOT, m.asset))) errors.push('media[' + i + ']: asset not found → ' + m.asset);
+    }
+  });
+
+  if (catalog) {
+    catalog.forEach((p, i) => {
+      if (!p.img) return;
+      const record = byAsset.get(p.img);
+      if (!record) {
+        errors.push('catalog[' + i + ']: portfolio image missing from media manifest → ' + p.img);
+      } else if (record.class !== 'REAL_PORTFOLIO') {
+        errors.push('catalog[' + i + ']: public portfolio may only use REAL_PORTFOLIO assets → ' + p.img + ' is ' + record.class);
+      } else if (record.approval !== 'published' && record.approval !== 'approved') {
+        errors.push('catalog[' + i + ']: public portfolio asset is not approved/published → ' + p.img);
+      }
+    });
+  }
+
+  ok(records.length + ' media records checked; public catalog provenance enforced');
+}
+
+/* ---------- 6. asset size sanity ---------- */
 console.log('\n[assets]');
 if (fs.existsSync(path.join(ROOT, 'assets'))) {
   const big = fs.readdirSync(path.join(ROOT, 'assets'))
