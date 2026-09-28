@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "updated": "2026-09-28",
+  "policy": "Generated concepts must never be referenced by the public catalog as completed client work.",
+  "assets": [
+    {
+      "asset": "assets/organic-arch-sequin.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/judah-neon-booth.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/winnie-the-pooh.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/cowgirl-birthday.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/spiderman-party.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/30th-black-gold.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/boho-arch.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/silah-dessert-table.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/venue-stage.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/fresh-prince-90s.jpg",
+      "class": "REAL_PORTFOLIO",
+      "approval": "published",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_commit",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Introduced by the commit explicitly labeled 'real portfolio (10 events)'."
+      },
+      "surfaces": [
+        "website-portfolio"
+      ],
+      "notes": "Currently referenced by catalog.json; treat as public portfolio unless owner later corrects provenance."
+    },
+    {
+      "asset": "assets/demo/baby-shower.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    },
+    {
+      "asset": "assets/demo/graduation.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    },
+    {
+      "asset": "assets/demo/hero-arch.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    },
+    {
+      "asset": "assets/demo/kids-fortnite.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    },
+    {
+      "asset": "assets/demo/quince.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    },
+    {
+      "asset": "assets/demo/wedding-elegant.png",
+      "class": "GENERATED_CONCEPT",
+      "approval": "archived",
+      "verification": "repository_history",
+      "evidence": {
+        "type": "git_history",
+        "ref": "01d0f852a11e2b95ead9ace57018b819de8b7dd2",
+        "note": "Moved into assets/demo when the repository replaced the earlier AI/demo set with the real portfolio."
+      },
+      "surfaces": [],
+      "notes": "Demo/generated concept only. Must not be presented as completed Duran Decorations client work."
+    }
+  ]
+}
