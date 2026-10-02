@@ -124,10 +124,22 @@
       const date = document.getElementById('qDate').value;
       const city = document.getElementById('qCity').value.trim();
       if (!name || !date || !city) { alert(t('modal_required')); return; }
-      const msg = buildMessage(document.getElementById('qPackage').value);
+      const packageId = document.getElementById('qPackage').value;
+      const addonCount = addonsOf().filter(a => {
+        const checkbox = document.getElementById('addon_' + a.id);
+        return checkbox && checkbox.checked;
+      }).length;
+      const msg = buildMessage(packageId);
+      window.dispatchEvent(new CustomEvent('dd:quotehandoff', {
+        detail: { packageId, addonCount }
+      }));
       window.open('https://wa.me/' + cfg.WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
     });
     /* hero + nav CTAs open the modal instead of jumping */
-    document.querySelectorAll('[data-open-quote]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); open(); }));
+    document.querySelectorAll('[data-open-quote]').forEach(b => b.addEventListener('click', e => {
+      e.preventDefault();
+      const source = b.closest('nav') ? 'navigation' : b.closest('.hero') ? 'hero' : 'site_cta';
+      window.dispatchEvent(new CustomEvent('dd:openquote', { detail: { source } }));
+    }));
   });
 })();
