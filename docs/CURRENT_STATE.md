@@ -1,6 +1,6 @@
 # Duran Decorations — Current State
 
-Verified from repository state on 2026-09-28.
+Verified from repository state on 2026-10-02.
 
 ## Repository
 
@@ -27,6 +27,7 @@ The repo already includes:
 - parametric arch studio;
 - accessibility and reduced-motion work;
 - structured-data/SEO groundwork;
+- provider-neutral, privacy-safe quote and WhatsApp conversion events;
 - CI validation.
 
 ## Existing modular structure
@@ -103,8 +104,13 @@ Revisit framework/backend migration only if one of these becomes real:
 3. Vercel project linkage not yet verified.
 4. No formal preview-before-production policy.
 5. No media provenance/approval workflow.
-6. No recurring audit loop for site, media, SEO, and booking health.
-7. Placeholder customer-contact data remains in config.
+6. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
+7. No recurring audit loop for site, media, SEO, and booking health.
+8. Placeholder customer-contact data remains in config.
+
+## Growth baseline
+
+See `docs/GROWTH_BASELINE.md` for the metadata audit, verified offering categories, conversion-event contract, privacy boundary, and measurement plan. Known placeholder telephone and unverified Instagram data were removed from JSON-LD; owner-confirmed contact and service-policy values are still required before Issue #2 can be completed.
 
 ## Next Step to Build
 

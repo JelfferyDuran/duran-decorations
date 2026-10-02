@@ -9,7 +9,7 @@ Real portfolio, market-beating pricing, bilingual (EN/ES), dark mode, mobile-fir
 ## Stack
 - Static single-page app (no build step)
 - **CSS:** `css/style.css` (tokens + all sections + modal + lightbox)
-- **JS modules** (`js/`): `config.js` (contact constants) · `i18n.js` (EN/ES dict) · `data.js` (rendering + lightbox) · `estimator.js` (quote modal) · `motion.js` (GSAP/Lenis/preloader) · `hero-webgl.js` (Three.js) · `gen-canvas.js` (background) · `arch-studio.js` (parametric) · `app.js` (orchestrator)
+- **JS modules** (`js/`): `config.js` (contact constants) · `i18n.js` (EN/ES dict) · `data.js` (rendering + lightbox) · `analytics.js` (privacy-safe conversion event bridge) · `estimator.js` (quote modal) · `motion.js` (GSAP/Lenis/preloader) · `hero-webgl.js` (Three.js) · `gen-canvas.js` (background) · `arch-studio.js` (parametric) · `app.js` (orchestrator)
 - **Data:** `catalog.json` (portfolio) · `pricing.json` (packages + add-ons) · `testimonials.json` (hidden when empty)
 - **CI:** `.github/workflows/validate.yml` runs `scripts/validate.js` on every push — validates JSON, pricing math (`duran < market`), image paths, and i18n EN/ES parity. Run locally with `node scripts/validate.js`.
 
@@ -80,6 +80,7 @@ Before making a meaningful implementation change, read:
 3. `docs/AGENT_HANDOFF.md` — persistent rules for future agents/Hermes
 4. `docs/MEDIA_PIPELINE.md` — real-vs-generated media and provenance rules
 5. `docs/ROADMAP.md` — prioritized infrastructure/product sequence
+6. `docs/GROWTH_BASELINE.md` — SEO audit and conversion measurement contract
 
 Use bounded workstream branches (`frontend/`, `booking/`, `data/`, `media/`, `growth/`, `infra/`, `automation/`) instead of using `main` as a scratch branch.
 
