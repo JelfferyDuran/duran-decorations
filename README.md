@@ -55,7 +55,7 @@ Real portfolio, market-beating pricing, bilingual (EN/ES), dark mode, mobile-fir
 ```
 
 ## Contact constants
-Edit **`js/config.js`** — `WA_NUMBER`, `IG_HANDLE`, `WA_MSG`, `AREA`. Single source of truth (search "TODO" for the current placeholders).
+Edit **`js/config.js`** only after the owner confirms `WA_NUMBER`, `IG_HANDLE`, `AREA`, and `TRAVEL_LABEL`. Keep `CONTACT_VERIFIED: false` and those public fields empty until all are approved. The site keeps the estimator available but hides/disables outbound contact actions while verification is incomplete; CI enforces this fail-closed boundary.
 
 ## Add a new design
 1. Drop the real photo in `assets/` (slug name, e.g. `theme-name.jpg`)

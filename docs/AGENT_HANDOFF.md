@@ -61,6 +61,8 @@ Treat these as owner-approved facts only:
 
 If a value is missing, create a blocker instead of guessing.
 
+`js/config.js` enforces this boundary with `CONTACT_VERIFIED`. Keep it `false` and keep `WA_NUMBER`, `IG_HANDLE`, `AREA`, and `TRAVEL_LABEL` empty until all four values are owner-approved. While false, the public estimator remains usable but outbound contact actions must stay unavailable.
+
 ## Media boundary
 
 Every visual asset should be classifiable as one of:

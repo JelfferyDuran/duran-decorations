@@ -1,6 +1,6 @@
 # Duran Decorations — Current State
 
-Verified from repository state on 2026-10-02.
+Verified from repository state on 2026-10-03.
 
 ## Repository
 
@@ -8,8 +8,8 @@ Verified from repository state on 2026-10-02.
 - Production branch: `main`
 - Current app: static single-page site with no framework build step
 - Current repo permissions allow normal branch/PR workflow
-- Open issues at inspection time: none
-- Open/closed PR history returned at inspection time: none
+- Open issues at inspection time: #1 (Vercel), #2 (owner business data), and #5 (recurring project loop)
+- Open pull requests at inspection time: none
 
 ## Existing product capability
 
@@ -37,6 +37,7 @@ The repo already includes:
 
 ### JavaScript
 - `js/app.js`
+- `js/analytics.js`
 - `js/arch-studio.js`
 - `js/config.js`
 - `js/data.js`
@@ -55,7 +56,7 @@ The repo already includes:
 - `.github/workflows/validate.yml`
 - `scripts/validate.js`
 
-CI currently checks JSON validity, required fields, pricing sanity, image paths, and EN/ES key parity.
+CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, and the fail-closed contact-verification boundary.
 
 ## Current hosting/deployment state
 
@@ -65,17 +66,15 @@ A Duran Decorations Vercel project was not present in the Vercel project set ret
 
 ## Known blockers / owner facts still unresolved in repo
 
-`js/config.js` currently contains placeholders for:
+`js/config.js` intentionally keeps these public fields empty while `CONTACT_VERIFIED` is false:
 
 - WhatsApp number;
 - Instagram handle.
 
-It also contains generic values for:
-
 - travel label;
 - service area.
 
-Before marketing/booking automation depends on these values, confirm the owner-approved contact and business-policy data.
+Customer-facing WhatsApp and Instagram actions fail closed until the owner-approved contact and policy data are populated together. The estimator remains usable, but cannot hand off to WhatsApp while verification is incomplete. CI enforces this boundary.
 
 ## Architectural decision for the next phase
 
@@ -99,14 +98,10 @@ Revisit framework/backend migration only if one of these becomes real:
 
 ## Immediate infrastructure gaps
 
-1. No established issue/PR work queue.
-2. No repo-level orchestration/handoff docs before this foundation pass.
-3. Vercel project linkage not yet verified.
-4. No formal preview-before-production policy.
-5. No media provenance/approval workflow.
-6. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
-7. No recurring audit loop for site, media, SEO, and booking health.
-8. Placeholder customer-contact data remains in config.
+1. Vercel project linkage is not verified, so Vercel previews are unavailable.
+2. Owner-confirmed WhatsApp, Instagram, service-area, and travel-policy values are still missing.
+3. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
+4. The recurring repository-health loop is active, but Issue #5 remains open until its durable runbook/closure criteria are recorded.
 
 ## Growth baseline
 

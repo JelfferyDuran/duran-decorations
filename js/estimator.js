@@ -8,6 +8,21 @@
   function t(key) { return window.DD.t(key); }
   const fmt = n => '$' + n.toLocaleString('en-US');
 
+  function contactReady() {
+    return cfg.CONTACT_VERIFIED === true && /^\d{10,15}$/.test(cfg.WA_NUMBER || '');
+  }
+
+  function syncContactState() {
+    const submit = document.getElementById('qSubmit');
+    const status = document.getElementById('qContactStatus');
+    const ready = contactReady();
+    if (submit) {
+      submit.disabled = !ready;
+      submit.setAttribute('aria-disabled', String(!ready));
+    }
+    if (status) status.hidden = ready;
+  }
+
   /* ---------- helpers ---------- */
   function addonsOf() {
     const d = window.DD.getData();
@@ -99,6 +114,7 @@
       '<option value="' + p.id + '">' + (window.DD_LANG === 'es' ? p.name_es : p.name) + ' — ' + fmt(p.duran) + '</option>').join('');
     if (pkgId) select.value = pkgId;
     setTotal();
+    syncContactState();
     const overlay = document.getElementById('quoteModal');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -117,9 +133,11 @@
 
   /* ---------- wire up on DOM ready ---------- */
   document.addEventListener('DOMContentLoaded', () => {
+    syncContactState();
     document.getElementById('qCancel').addEventListener('click', close);
     document.getElementById('quoteModal').addEventListener('click', e => { if (e.target.id === 'quoteModal') close(); });
     document.getElementById('qSubmit').addEventListener('click', () => {
+      if (!contactReady()) { alert(t('modal_contact_pending')); return; }
       const name = document.getElementById('qName').value.trim();
       const date = document.getElementById('qDate').value;
       const city = document.getElementById('qCity').value.trim();
