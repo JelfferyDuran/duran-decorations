@@ -39,6 +39,8 @@ A worker may edit a shared file only when required for the bounded task. Before 
 
 ## Start-of-run protocol
 
+Use `docs/AUTOMATION_RUNBOOK.md` as the full recurring-run contract and run `node scripts/project-health.js` for the bounded local preflight.
+
 Every implementation run should:
 
 1. Inspect latest `main` and recent commits.

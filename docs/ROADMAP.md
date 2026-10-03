@@ -4,7 +4,7 @@ This roadmap prioritizes operational leverage before large rewrites.
 
 ## Phase 0 — Project operating system
 
-Status: **in progress**
+Status: **completed**
 
 - orchestration rules;
 - agent handoff;

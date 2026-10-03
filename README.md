@@ -81,7 +81,10 @@ Before making a meaningful implementation change, read:
 4. `docs/MEDIA_PIPELINE.md` — real-vs-generated media and provenance rules
 5. `docs/ROADMAP.md` — prioritized infrastructure/product sequence
 6. `docs/GROWTH_BASELINE.md` — SEO audit and conversion measurement contract
+7. `docs/AUTOMATION_RUNBOOK.md` — recurring-run preflight, lane selection, validation, and handoff contract
 
 Use bounded workstream branches (`frontend/`, `booking/`, `data/`, `media/`, `growth/`, `infra/`, `automation/`) instead of using `main` as a scratch branch.
 
 Every meaningful run should end with validation evidence and one **Next Step to Build**.
+
+Run `node scripts/project-health.js` at the start of automated or manual orchestration work. It verifies that the repository operating-system files and contracts are present and prints a bounded local state snapshot; GitHub and Vercel still require fresh connected-tool inspection.
