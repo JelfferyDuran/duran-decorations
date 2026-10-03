@@ -41,6 +41,7 @@ See `docs/CURRENT_STATE.md` for the verified current state.
 - `README.md` — runtime/data usage.
 - `docs/CURRENT_STATE.md` — verified present state + blockers.
 - `docs/ORCHESTRATION.md` — multi-agent workflow.
+- `docs/AUTOMATION_RUNBOOK.md` — recurring-run preflight, lane selection, validation, and durable handoff format.
 - `docs/MEDIA_PIPELINE.md` — media generation, approval, provenance.
 - `docs/ROADMAP.md` — prioritized infrastructure/product sequence.
 - `PLAN.md` — historical premium upgrade plan; use as background, not current task queue.
@@ -89,7 +90,8 @@ Future agents should begin with:
 1. latest `main`;
 2. `docs/CURRENT_STATE.md`;
 3. `docs/ORCHESTRATION.md`;
-4. open PRs/issues;
-5. the most recent relevant handoff in the PR/issue discussion.
+4. `docs/AUTOMATION_RUNBOOK.md`;
+5. open PRs/issues;
+6. the most recent relevant handoff in the PR/issue discussion.
 
 Do not rely on chat memory alone when repo state can answer the question.

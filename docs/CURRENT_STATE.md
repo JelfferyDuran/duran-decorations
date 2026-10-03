@@ -8,7 +8,7 @@ Verified from repository state on 2026-10-03.
 - Production branch: `main`
 - Current app: static single-page site with no framework build step
 - Current repo permissions allow normal branch/PR workflow
-- Open issues at inspection time: #1 (Vercel), #2 (owner business data), and #5 (recurring project loop)
+- Open issues after this bounded pass: #1 (Vercel) and #2 (owner business data)
 - Open pull requests at inspection time: none
 
 ## Existing product capability
@@ -55,8 +55,9 @@ The repo already includes:
 ### Validation
 - `.github/workflows/validate.yml`
 - `scripts/validate.js`
+- `scripts/project-health.js`
 
-CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, and the fail-closed contact-verification boundary.
+CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, the fail-closed contact-verification boundary, and repository operating-system integrity.
 
 ## Current hosting/deployment state
 
@@ -69,8 +70,7 @@ A Duran Decorations Vercel project was not present in the Vercel project set ret
 `js/config.js` intentionally keeps these public fields empty while `CONTACT_VERIFIED` is false:
 
 - WhatsApp number;
-- Instagram handle.
-
+- Instagram handle;
 - travel label;
 - service area.
 
@@ -101,7 +101,10 @@ Revisit framework/backend migration only if one of these becomes real:
 1. Vercel project linkage is not verified, so Vercel previews are unavailable.
 2. Owner-confirmed WhatsApp, Instagram, service-area, and travel-policy values are still missing.
 3. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
-4. The recurring repository-health loop is active, but Issue #5 remains open until its durable runbook/closure criteria are recorded.
+
+## Recurring project loop
+
+`docs/AUTOMATION_RUNBOOK.md` now defines the durable start-of-run inspection, lane-selection order, safety boundaries, Vercel handling, validation sequence, no-change behavior, and handoff template. `scripts/project-health.js` verifies that the required repository operating-system contracts are present and prints a bounded local snapshot; GitHub and Vercel external state still require fresh connected-tool inspection.
 
 ## Growth baseline
 
