@@ -6,6 +6,10 @@
   window.DD_LANG = localStorage.getItem('dd_lang') || 'en';
   const cfg = window.DD_CONFIG;
 
+  function contactReady() {
+    return cfg.CONTACT_VERIFIED === true && /^\d{10,15}$/.test(cfg.WA_NUMBER || '');
+  }
+
   /* ---------- language ---------- */
   function applyLang() {
     const d = window.I18N || {};
@@ -89,10 +93,25 @@
     });
     /* contact section direct WhatsApp link */
     const wa = document.getElementById('waLink');
-    if (wa) wa.href = 'https://wa.me/' + cfg.WA_NUMBER + '?text=' + encodeURIComponent(cfg.WA_MSG);
+    const contactStatus = document.getElementById('contactStatus');
+    if (wa && contactReady()) {
+      wa.href = 'https://wa.me/' + cfg.WA_NUMBER + '?text=' + encodeURIComponent(cfg.WA_MSG);
+      wa.hidden = false;
+      if (contactStatus) contactStatus.hidden = true;
+    } else if (wa) {
+      wa.removeAttribute('href');
+      wa.hidden = true;
+      if (contactStatus) contactStatus.hidden = false;
+    }
     /* IG note */
     const ig = document.getElementById('igNote');
-    if (ig) ig.textContent = 'Instagram: ' + cfg.IG_HANDLE + ' · Serving ' + cfg.AREA + ' & nearby';
+    if (ig && cfg.CONTACT_VERIFIED) {
+      ig.textContent = 'Instagram: ' + cfg.IG_HANDLE + ' · ' + cfg.AREA;
+      ig.hidden = false;
+    } else if (ig) {
+      ig.textContent = '';
+      ig.hidden = true;
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {

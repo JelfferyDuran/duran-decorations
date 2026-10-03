@@ -6,6 +6,7 @@
    ============================================================ */
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const errors = [];
@@ -34,6 +35,32 @@ try {
   if (!missingInEs.length && !missingInEn.length) ok('EN/ES key sets identical (' + ek.length + ' keys)');
 } catch (e) {
   errors.push('i18n.js could not be loaded: ' + e.message);
+}
+
+/* ---------- 1b. verified contact boundary ---------- */
+console.log('\n[contact configuration]');
+try {
+  const sandbox = { window: {} };
+  const source = fs.readFileSync(path.join(ROOT, 'js', 'config.js'), 'utf8');
+  vm.runInNewContext(source, sandbox, { filename: 'js/config.js' });
+  const cfg = sandbox.window.DD_CONFIG || {};
+  const publicFields = ['WA_NUMBER', 'IG_HANDLE', 'AREA', 'TRAVEL_LABEL'];
+  if (typeof cfg.CONTACT_VERIFIED !== 'boolean') errors.push('config: CONTACT_VERIFIED must be true or false');
+  if (cfg.CONTACT_VERIFIED) {
+    if (!/^\d{10,15}$/.test(cfg.WA_NUMBER || '')) errors.push('config: verified WA_NUMBER must contain 10–15 digits');
+    if (!/^@[A-Za-z0-9._]{1,30}$/.test(cfg.IG_HANDLE || '')) errors.push('config: verified IG_HANDLE must be a valid @handle');
+    ['AREA', 'TRAVEL_LABEL'].forEach(key => {
+      if (typeof cfg[key] !== 'string' || !cfg[key].trim()) errors.push('config: verified ' + key + ' must be non-empty');
+    });
+    ok('owner-verified contact and policy fields are populated');
+  } else {
+    publicFields.forEach(key => {
+      if (cfg[key]) errors.push('config: ' + key + ' must stay empty while CONTACT_VERIFIED is false');
+    });
+    ok('unverified contact and policy fields fail closed');
+  }
+} catch (e) {
+  errors.push('config.js could not be validated: ' + e.message);
 }
 
 /* ---------- 2. catalog ---------- */

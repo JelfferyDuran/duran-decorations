@@ -61,6 +61,7 @@
     const directWhatsApp = document.getElementById('waLink');
     if (!directWhatsApp) return;
     directWhatsApp.addEventListener('click', () => {
+      if (directWhatsApp.hidden || !directWhatsApp.href) return;
       record('whatsapp_click', {
         source: 'contact',
         language: window.DD_LANG || document.documentElement.lang || 'en'
