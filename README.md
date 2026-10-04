@@ -6,6 +6,8 @@ Real portfolio, market-beating pricing, bilingual (EN/ES), dark mode, mobile-fir
 
 **Live:** https://jelfferyduran.github.io/duran-decorations/
 
+**Vercel production mirror:** https://duran-decorations.vercel.app/
+
 ## Stack
 - Static single-page app (no build step)
 - **CSS:** `css/style.css` (tokens + all sections + modal + lightbox)
@@ -82,6 +84,7 @@ Before making a meaningful implementation change, read:
 5. `docs/ROADMAP.md` — prioritized infrastructure/product sequence
 6. `docs/GROWTH_BASELINE.md` — SEO audit and conversion measurement contract
 7. `docs/AUTOMATION_RUNBOOK.md` — recurring-run preflight, lane selection, validation, and handoff contract
+8. `docs/DEPLOYMENT.md` — Vercel project identifiers, verification, and rollback
 
 Use bounded workstream branches (`frontend/`, `booking/`, `data/`, `media/`, `growth/`, `infra/`, `automation/`) instead of using `main` as a scratch branch.
 

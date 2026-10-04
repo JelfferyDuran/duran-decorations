@@ -18,6 +18,8 @@ Success condition: a new agent can enter the repo, understand ownership, choose 
 
 ## Phase 1 — Vercel + preview deployment
 
+Status: **completed**
+
 Goal: make every branch/PR reviewable before production.
 
 - create/link dedicated Vercel project;
@@ -28,7 +30,7 @@ Goal: make every branch/PR reviewable before production.
 - document rollback path;
 - add environment variables only when server-side features actually exist.
 
-Success condition: every meaningful PR gets a working preview and production is verified after merge.
+Success condition: every meaningful PR gets a working preview and production is verified after merge. Completed with the dedicated `duran-decorations` Vercel project, a verified branch Preview, and a verified `main` production deployment.
 
 ## Phase 2 — Business truth + conversion hardening
 
@@ -97,4 +99,4 @@ If triggered, design the data/security model first and migrate deliberately rath
 
 ## Next Step to Build
 
-Complete Phase 1: dedicated Vercel project + GitHub integration + preview deployment verification.
+Complete a bounded keyboard and focus-management accessibility pass without changing business data, pricing, or public media.

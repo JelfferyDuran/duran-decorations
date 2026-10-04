@@ -61,6 +61,8 @@ When a dedicated Duran Decorations project exists:
 - verify the production deployment and alias after merge;
 - record deployment IDs/URLs in the handoff.
 
+The stable project identifiers, verification checklist, and rollback path live in `docs/DEPLOYMENT.md`.
+
 When no dedicated project exists, state that explicitly. Do not infer linkage from another project name and do not deploy into an unrelated project.
 
 ## Durable handoff template
@@ -95,4 +97,4 @@ Do not create a commit just to prove that a run occurred. If repository, issue, 
 
 ## Next Step to Build
 
-Connect `JelfferyDuran/duran-decorations` to its own Vercel project, then exercise this runbook against a real branch Preview and production deployment.
+Complete a bounded keyboard and focus-management accessibility pass without changing business data, pricing, or public media.
