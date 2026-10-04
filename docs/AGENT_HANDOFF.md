@@ -42,6 +42,7 @@ See `docs/CURRENT_STATE.md` for the verified current state.
 - `docs/CURRENT_STATE.md` — verified present state + blockers.
 - `docs/ORCHESTRATION.md` — multi-agent workflow.
 - `docs/AUTOMATION_RUNBOOK.md` — recurring-run preflight, lane selection, validation, and durable handoff format.
+- `docs/DEPLOYMENT.md` — Vercel project identifiers, Preview/production verification, and rollback.
 - `docs/MEDIA_PIPELINE.md` — media generation, approval, provenance.
 - `docs/ROADMAP.md` — prioritized infrastructure/product sequence.
 - `PLAN.md` — historical premium upgrade plan; use as background, not current task queue.

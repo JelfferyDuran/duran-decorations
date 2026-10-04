@@ -1,6 +1,6 @@
 # Duran Decorations — Current State
 
-Verified from repository state on 2026-10-03.
+Verified from repository and connected deployment state on 2026-10-04.
 
 ## Repository
 
@@ -8,7 +8,7 @@ Verified from repository state on 2026-10-03.
 - Production branch: `main`
 - Current app: static single-page site with no framework build step
 - Current repo permissions allow normal branch/PR workflow
-- Open issues after this bounded pass: #1 (Vercel) and #2 (owner business data)
+- Open issues at inspection time: #1 (Vercel) and #2 (owner business data)
 - Open pull requests at inspection time: none
 
 ## Existing product capability
@@ -61,9 +61,13 @@ CI currently checks JSON validity, required fields, pricing sanity, image paths,
 
 ## Current hosting/deployment state
 
-The README currently identifies GitHub Pages as the live host.
+- GitHub Pages remains available at <https://jelfferyduran.github.io/duran-decorations/>.
+- The GitHub repository is linked to the dedicated Vercel project `duran-decorations` (`prj_cGaGMV920T8LVKPH9xjocFzCGEhw`).
+- Vercel production branch: `main`.
+- Vercel production alias: <https://duran-decorations.vercel.app/>.
+- The first Vercel production deployment reached `READY` from `main` commit `b3e5917a2f2d80251c73dd95142c02f0c02b346d`.
 
-A Duran Decorations Vercel project was not present in the Vercel project set returned during this inspection, so Vercel linkage should be treated as **not yet verified** rather than assumed.
+See `docs/DEPLOYMENT.md` for Preview, production-verification, and rollback steps.
 
 ## Known blockers / owner facts still unresolved in repo
 
@@ -98,9 +102,8 @@ Revisit framework/backend migration only if one of these becomes real:
 
 ## Immediate infrastructure gaps
 
-1. Vercel project linkage is not verified, so Vercel previews are unavailable.
-2. Owner-confirmed WhatsApp, Instagram, service-area, and travel-policy values are still missing.
-3. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
+1. Owner-confirmed WhatsApp, Instagram, service-area, and travel-policy values are still missing.
+2. No analytics provider is connected; `js/analytics.js` exposes a safe event contract only.
 
 ## Recurring project loop
 
@@ -112,4 +115,4 @@ See `docs/GROWTH_BASELINE.md` for the metadata audit, verified offering categori
 
 ## Next Step to Build
 
-Connect the repository to a dedicated Vercel project with Git integration, verify preview deployments for branches/PRs, then make preview verification part of the merge protocol.
+Complete a bounded keyboard and focus-management accessibility pass without changing business data, pricing, or public media.
