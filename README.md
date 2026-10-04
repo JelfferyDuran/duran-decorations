@@ -4,9 +4,9 @@ Party & event decorations by Kristina Duran — New Jersey.
 
 Real portfolio, market-beating pricing, bilingual (EN/ES), dark mode, mobile-first.
 
-**Live:** https://duran-decorations.vercel.app/
+**Live:** https://jelfferyduran.github.io/duran-decorations/
 
-**GitHub Pages mirror:** https://jelfferyduran.github.io/duran-decorations/
+**Vercel production mirror:** https://duran-decorations.vercel.app/
 
 ## Stack
 - Static single-page app (no build step)

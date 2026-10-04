@@ -20,7 +20,7 @@ Every non-`main` branch push should create a Vercel Preview deployment through t
 Before merge:
 
 1. Confirm the deployment state is `READY`.
-2. Open the Preview URL and verify the page returns HTTP 200.
+2. Open the Preview URL and verify the page returns HTTP 200. Preview deployments use Vercel Authentication by default, so use a team-authenticated browser or Vercel-authenticated fetch when an anonymous request redirects to sign-in.
 3. Check the portfolio images, pricing cards, language toggle, quote estimator, and disabled contact actions.
 4. Confirm the deployment metadata references the expected branch and commit SHA.
 5. Record the deployment ID and URL in the PR handoff.
