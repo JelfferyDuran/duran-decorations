@@ -1,6 +1,6 @@
 # Duran Decorations — Current State
 
-Verified from repository and connected deployment state on 2026-10-04.
+Verified from repository and connected deployment state on 2026-10-05.
 
 ## Repository
 
@@ -8,7 +8,7 @@ Verified from repository and connected deployment state on 2026-10-04.
 - Production branch: `main`
 - Current app: static single-page site with no framework build step
 - Current repo permissions allow normal branch/PR workflow
-- Open issues at inspection time: #1 (Vercel) and #2 (owner business data)
+- Open issues at inspection time: #2 (owner business data)
 - Open pull requests at inspection time: none
 
 ## Existing product capability
@@ -57,7 +57,11 @@ The repo already includes:
 - `scripts/validate.js`
 - `scripts/project-health.js`
 
-CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, the fail-closed contact-verification boundary, and repository operating-system integrity.
+CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, the fail-closed contact-verification boundary, static DOM/runtime ID references, and repository operating-system integrity.
+
+## Quote-flow health
+
+The estimator modal now includes the missing `qAskNote` element used by its total calculator. Selecting “Book Now” or “Build Estimate” can open the estimator without a runtime exception, and add-ons that require a custom quote are explicitly excluded from the displayed total in both English and Spanish. CI verifies that exact `getElementById(...)` references resolve to markup IDs so this class of regression fails before deployment.
 
 ## Current hosting/deployment state
 

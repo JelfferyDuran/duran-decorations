@@ -59,7 +59,7 @@
     modal_total: 'Estimate', modal_savings: 'You save vs. market', modal_travel: 'Final quote depends on confirmed event details.',
     modal_submit: 'Send to WhatsApp', modal_cancel: 'Cancel', modal_required: 'Please fill in your name, date and location.',
     modal_contact_pending: 'WhatsApp sending is unavailable until the owner confirms the business contact details.',
-    modal_ask: 'Ask', modal_per_ft: '/ft', modal_qty: 'ft',
+    modal_ask: 'Ask', modal_ask_note: 'Items marked “Ask” are not included in the estimate total.', modal_per_ft: '/ft', modal_qty: 'ft',
     lb_close: 'Close', lb_prev: 'Previous', lb_next: 'Next', lb_quote: 'Quote this design',
     err_data: 'We\u2019re updating our menu — message us for today\u2019s list \uD83D\uDC4D',
     preload_tag: 'Duran Decorations'
@@ -120,7 +120,7 @@
     modal_total: 'Estimado', modal_savings: 'Ahorras vs. el mercado', modal_travel: 'La cotización final depende de los detalles confirmados del evento.',
     modal_submit: 'Enviar a WhatsApp', modal_cancel: 'Cancelar', modal_required: 'Por favor completa tu nombre, fecha y ubicación.',
     modal_contact_pending: 'El envío por WhatsApp no estará disponible hasta que el propietario confirme los datos de contacto del negocio.',
-    modal_ask: 'Preguntar', modal_per_ft: '/pie', modal_qty: 'pies',
+    modal_ask: 'Preguntar', modal_ask_note: 'Los artículos marcados “Preguntar” no están incluidos en el total estimado.', modal_per_ft: '/pie', modal_qty: 'pies',
     lb_close: 'Cerrar', lb_prev: 'Anterior', lb_next: 'Siguiente', lb_quote: 'Cotizar este diseño',
     err_data: 'Estamos actualizando nuestro menú — escríbenos para la lista de hoy \uD83D\uDC4D',
     preload_tag: 'Duran Decorations'

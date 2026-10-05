@@ -41,6 +41,7 @@
     const est = document.getElementById('qEst');
     const save = document.getElementById('qSave');
     const travel = document.getElementById('qTravel');
+    const askNote = document.getElementById('qAskNote');
     let total = pkg ? pkg.duran : 0;
     let savings = pkg ? (pkg.market - pkg.duran) : 0;
     let askList = [];
@@ -58,7 +59,7 @@
     est.textContent = fmt(total);
     save.textContent = fmt(savings);
     travel.textContent = pkg ? t('modal_travel') : '';
-    document.getElementById('qAskNote').style.display = askList.length ? '' : 'none';
+    askNote.hidden = askList.length === 0;
   }
 
   /* ---------- build WhatsApp message ---------- */

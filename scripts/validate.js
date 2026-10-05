@@ -63,6 +63,32 @@ try {
   errors.push('config.js could not be validated: ' + e.message);
 }
 
+/* ---------- 1c. static DOM/runtime contract ---------- */
+console.log('\n[DOM runtime references]');
+try {
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const producedIds = new Set(Array.from(html.matchAll(/\sid=["']([^"']+)["']/g), match => match[1]));
+  const jsDir = path.join(ROOT, 'js');
+  const missing = [];
+  const scripts = fs.readdirSync(jsDir).filter(file => file.endsWith('.js')).map(file => ({
+    file,
+    source: fs.readFileSync(path.join(jsDir, file), 'utf8')
+  }));
+  scripts.forEach(({ source }) => {
+    for (const match of source.matchAll(/\sid=[\\"']([^\\"']+)[\\"']/g)) producedIds.add(match[1]);
+  });
+  scripts.forEach(({ file, source }) => {
+    const exactIdPattern = /getElementById\(\s*(["'])([^"']+)\1\s*\)/g;
+    for (const match of source.matchAll(exactIdPattern)) {
+      if (!producedIds.has(match[2])) missing.push(file + ' → #' + match[2]);
+    }
+  });
+  if (missing.length) errors.push('DOM: static getElementById references missing from index.html: ' + missing.join(', '));
+  else ok('static getElementById references resolve to index.html');
+} catch (e) {
+  errors.push('DOM runtime references could not be validated: ' + e.message);
+}
+
 /* ---------- 2. catalog ---------- */
 console.log('\n[catalog]');
 const catalog = readJson('catalog.json');
