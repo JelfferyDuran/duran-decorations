@@ -5,6 +5,8 @@
    ============================================================ */
 (function () {
   const cfg = window.DD_CONFIG;
+  const a11y = window.DD_A11Y;
+  let returnFocusTo = null;
   function t(key) { return window.DD.t(key); }
   const fmt = n => '$' + n.toLocaleString('en-US');
 
@@ -107,7 +109,10 @@
   }
 
   /* ---------- open / close ---------- */
-  function open(pkgId) {
+  function open(pkgId, requestedReturnFocus) {
+    const overlay = document.getElementById('quoteModal');
+    const wasOpen = overlay.classList.contains('open');
+    if (!wasOpen) returnFocusTo = requestedReturnFocus || document.activeElement;
     renderAddons();
     const select = document.getElementById('qPackage');
     const data = window.DD.getData();
@@ -116,21 +121,31 @@
     if (pkgId) select.value = pkgId;
     setTotal();
     syncContactState();
-    const overlay = document.getElementById('quoteModal');
+    a11y.setDialogOpen(overlay, true);
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     document.getElementById('qName').focus();
-    document.addEventListener('keydown', onKey);
+    if (!wasOpen) document.addEventListener('keydown', onKey);
     select.addEventListener('change', setTotal);
   }
   function close() {
-    document.getElementById('quoteModal').classList.remove('open');
+    const overlay = document.getElementById('quoteModal');
+    if (!overlay.classList.contains('open')) return;
+    overlay.classList.remove('open');
+    a11y.setDialogOpen(overlay, false);
     document.body.style.overflow = '';
     document.removeEventListener('keydown', onKey);
+    a11y.restoreFocus(returnFocusTo);
   }
-  function onKey(e) { if (e.key === 'Escape') close(); }
+  function onKey(e) {
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    a11y.trapFocus(document.getElementById('quoteModal'), e);
+  }
 
-  window.addEventListener('dd:openquote', e => { open(e.detail && e.detail.packageId); });
+  window.addEventListener('dd:openquote', e => {
+    const detail = e.detail || {};
+    open(detail.packageId, detail.returnFocusTo);
+  });
 
   /* ---------- wire up on DOM ready ---------- */
   document.addEventListener('DOMContentLoaded', () => {
