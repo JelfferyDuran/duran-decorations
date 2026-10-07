@@ -38,7 +38,14 @@
           '<span class="cta">' + t('view_details') + ' →</span>' +
         '</div>' +
       '</article>').join('');
-    grid.querySelectorAll('.card').forEach(c => c.addEventListener('click', () => openLightbox(+c.dataset.idx)));
+    grid.querySelectorAll('.card').forEach(c => {
+      c.addEventListener('click', () => openLightbox(+c.dataset.idx));
+      c.addEventListener('keydown', event => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        openLightbox(+c.dataset.idx);
+      });
+    });
   }
 
   /* ---------- render pricing ---------- */
@@ -83,7 +90,9 @@
   function openLightbox(idx) {
     if (!state.catalog.length) return;
     let cur = idx;
+    const returnFocusTo = document.activeElement;
     const overlay = document.getElementById('lightbox');
+    const a11y = window.DD_A11Y;
     const img = document.getElementById('lbImg');
     const cap = document.getElementById('lbCaption');
     function show() {
@@ -92,20 +101,38 @@
       cap.innerHTML = '<div class="cat">' + (window.DD_LANG === 'es' ? p.cat_es : p.cat) + '</div><h3>' + (window.DD_LANG === 'es' ? p.name_es : p.name) + '</h3><p>' + (window.DD_LANG === 'es' ? p.desc_es : p.desc) + '</p>' +
         '<button class="btn btn-primary" id="lbQuote">' + t('lb_quote') + '</button>';
       document.getElementById('lbQuote').addEventListener('click', () => {
-        close(); window.dispatchEvent(new CustomEvent('dd:openquote', { detail: { image: p.img, label: window.DD_LANG === 'es' ? p.name_es : p.name } }));
+        close(false);
+        window.dispatchEvent(new CustomEvent('dd:openquote', {
+          detail: {
+            image: p.img,
+            label: window.DD_LANG === 'es' ? p.name_es : p.name,
+            returnFocusTo
+          }
+        }));
       });
       document.getElementById('lbCount').textContent = (cur + 1) + ' / ' + state.catalog.length;
     }
     function next() { cur = (cur + 1) % state.catalog.length; show(); }
     function prev() { cur = (cur - 1 + state.catalog.length) % state.catalog.length; show(); }
-    function onKey(e) { if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft') prev(); }
-    function close() { overlay.classList.remove('open'); document.removeEventListener('keydown', onKey); }
+    function onKey(e) {
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+      if (e.key === 'ArrowRight') { e.preventDefault(); next(); return; }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); return; }
+      a11y.trapFocus(overlay, e);
+    }
+    function close(restoreFocus = true) {
+      overlay.classList.remove('open');
+      a11y.setDialogOpen(overlay, false);
+      document.removeEventListener('keydown', onKey);
+      if (restoreFocus) a11y.restoreFocus(returnFocusTo);
+    }
     document.getElementById('lbClose').onclick = close;
     document.getElementById('lbPrev').onclick = prev;
     document.getElementById('lbNext').onclick = next;
     overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
     document.addEventListener('keydown', onKey);
     show();
+    a11y.setDialogOpen(overlay, true);
     overlay.classList.add('open');
     document.getElementById('lbClose').focus();
   }

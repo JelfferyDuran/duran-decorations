@@ -89,6 +89,26 @@ try {
   errors.push('DOM runtime references could not be validated: ' + e.message);
 }
 
+/* ---------- 1d. keyboard/focus accessibility contract ---------- */
+console.log('\n[keyboard and focus contracts]');
+try {
+  const html = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  const tagForId = id => html.match(new RegExp('<[^>]+\\sid=["\\\']' + id + '["\\\'][^>]*>'))?.[0] || '';
+  const burger = tagForId('burger');
+  if (!/aria-controls=["']navLinks["']/.test(burger)) errors.push('a11y: #burger must control #navLinks');
+  if (!/aria-expanded=["']false["']/.test(burger)) errors.push('a11y: #burger must declare its collapsed state');
+  ['quoteModal', 'lightbox'].forEach(id => {
+    const dialog = tagForId(id);
+    if (!/aria-hidden=["']true["']/.test(dialog) || !/\sinert(?:\s|>)/.test(dialog)) {
+      errors.push('a11y: #' + id + ' must start hidden and inert');
+    }
+  });
+  if (!html.includes('<script defer src="js/a11y.js"></script>')) errors.push('a11y: shared dialog helper must load before interactive modules');
+  if (!errors.some(error => error.startsWith('a11y:'))) ok('menus and dialogs expose keyboard/focus state contracts');
+} catch (e) {
+  errors.push('keyboard/focus contracts could not be validated: ' + e.message);
+}
+
 /* ---------- 2. catalog ---------- */
 console.log('\n[catalog]');
 const catalog = readJson('catalog.json');

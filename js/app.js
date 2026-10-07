@@ -36,7 +36,6 @@
       document.getElementById('qAddons').innerHTML = '';
       const data = window.DD.getData();
       /* simplest robust path: rebuild addons via estimator's internal render — re-open */
-      modal.classList.remove('open');
       window.dispatchEvent(new CustomEvent('dd:openquote', { detail: {} }));
     }
   }
@@ -77,9 +76,27 @@
   /* ---------- burger ---------- */
   function initBurger() {
     const burger = document.getElementById('burger');
-    burger.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.toggle('open');
-      burger.classList.toggle('open');
+    const links = document.getElementById('navLinks');
+
+    function setOpen(isOpen, moveFocus) {
+      links.classList.toggle('open', isOpen);
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen && moveFocus) {
+        const firstLink = links.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }
+    }
+
+    burger.addEventListener('click', event => {
+      const isOpen = burger.getAttribute('aria-expanded') !== 'true';
+      setOpen(isOpen, event.detail === 0);
+    });
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false, false)));
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape' || burger.getAttribute('aria-expanded') !== 'true') return;
+      setOpen(false, false);
+      burger.focus();
     });
   }
 

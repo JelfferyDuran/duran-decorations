@@ -1,6 +1,6 @@
 # Duran Decorations — Current State
 
-Verified from repository and connected deployment state on 2026-10-05.
+Verified from repository and connected deployment state on 2026-10-07.
 
 ## Repository
 
@@ -57,11 +57,15 @@ The repo already includes:
 - `scripts/validate.js`
 - `scripts/project-health.js`
 
-CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, the fail-closed contact-verification boundary, static DOM/runtime ID references, and repository operating-system integrity.
+CI currently checks JSON validity, required fields, pricing sanity, image paths, EN/ES key parity, portfolio provenance, the fail-closed contact-verification boundary, static DOM/runtime ID references, keyboard/focus markup contracts, and repository operating-system integrity.
 
 ## Quote-flow health
 
 The estimator modal now includes the missing `qAskNote` element used by its total calculator. Selecting “Book Now” or “Build Estimate” can open the estimator without a runtime exception, and add-ons that require a custom quote are explicitly excluded from the displayed total in both English and Spanish. CI verifies that exact `getElementById(...)` references resolve to markup IDs so this class of regression fails before deployment.
+
+## Keyboard and focus health
+
+The quote modal and portfolio lightbox now start hidden from the accessibility tree, trap keyboard focus while open, close with Escape, and restore focus to the control that opened them. Portfolio cards respond to Enter and Space as well as clicks. The mobile menu exposes its controlled navigation and expanded state, moves keyboard users into the opened menu, closes after navigation, and returns focus to its toggle when dismissed with Escape.
 
 ## Current hosting/deployment state
 
@@ -119,4 +123,4 @@ See `docs/GROWTH_BASELINE.md` for the metadata audit, verified offering categori
 
 ## Next Step to Build
 
-Complete a bounded keyboard and focus-management accessibility pass without changing business data, pricing, or public media.
+Add a graceful no-WebGL fallback so decorative rendering failures never create repeated console errors or unnecessary work on low-power devices.

@@ -68,7 +68,7 @@
     </div>
     <button class="lang-btn" id="langBtn" title="Español">ES</button>
     <button class="theme-btn" id="themeBtn" title="Theme" aria-label="Toggle dark mode">🌓</button>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -234,7 +234,7 @@
 </footer>
 
 <!-- ============ QUOTE MODAL ============ -->
-<div class="modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+<div class="modal" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qTitle" aria-hidden="true" inert>
   <div class="modal-card">
     <h3 id="qTitle" data-i18n="modal_h">Build Your Estimate</h3>
     <p class="sub" data-i18n="modal_sub">Pick your package and add extras to prepare an estimate.</p>
@@ -280,7 +280,7 @@
 </div>
 
 <!-- ============ LIGHTBOX ============ -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Gallery" aria-hidden="true" inert>
   <div class="lb-inner">
     <img id="lbImg" src="" alt="">
     <div class="lb-caption" id="lbCaption"></div>
@@ -297,9 +297,10 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 
-<!-- app scripts (order matters: config → i18n → data → modules → app) -->
+<!-- app scripts (order matters: config → i18n → a11y → data → modules → app) -->
 <script defer src="js/config.js"></script>
 <script defer src="js/i18n.js"></script>
+<script defer src="js/a11y.js"></script>
 <script defer src="js/data.js"></script>
 <script defer src="js/motion.js"></script>
 <script defer src="js/analytics.js"></script>
