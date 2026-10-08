@@ -12,10 +12,26 @@
     if (canvas) canvas.remove(); // fall back to CSS gradient hero
     return;
   }
+  // Probe before constructing Three.js: WebGLRenderer logs and throws on blocked GPUs.
+  // The real portfolio image and CSS hero remain available without this decoration.
   const isMobile = innerWidth < 768;
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: !isMobile });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(innerWidth, innerHeight);
+  let context = null;
+  try {
+    context = canvas.getContext('webgl2') || canvas.getContext('webgl') ||
+      canvas.getContext('experimental-webgl');
+  } catch (_) { /* GPU/context creation denied */ }
+  if (!context) { canvas.remove(); return; }
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, context, alpha: true, antialias: !isMobile });
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    renderer.setSize(innerWidth, innerHeight);
+  } catch (_) {
+    if (renderer) { try { renderer.dispose(); } catch (_) { /* ignore teardown errors */ } }
+    canvas.remove();
+    return;
+  }
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, innerWidth / innerHeight, .1, 100);
   camera.position.z = 14;
@@ -37,21 +53,51 @@
     scene.add(m); balloons.push(m);
   }
   let scY = 0;
-  (function tick() {
-    const t = performance.now() / 1000;
-    balloons.forEach(b => {
-      b.position.y = b.userData.baseY + Math.sin(t * b.userData.speed + b.userData.phase) * b.userData.amp;
-      b.rotation.x = Math.sin(t * .4 + b.userData.phase) * .12;
-      b.rotation.z = Math.cos(t * .35 + b.userData.phase) * .12;
-    });
-    const lenis = window.DD && window.DD.motion && window.DD.motion.getLenis();
-    if (lenis) scY += ((lenis.scroll || 0) - scY) * .06; else scY = (window.scrollY || 0);
-    camera.position.y = scY * .004;
-    renderer.render(scene, camera);
-    requestAnimationFrame(tick);
-  })();
-  window.addEventListener('resize', () => {
-    camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
-    renderer.setSize(innerWidth, innerHeight);
-  });
+  let active = true;
+  let frameId = 0;
+
+  function stop() {
+    if (!active) return;
+    active = false;
+    if (frameId) cancelAnimationFrame(frameId);
+    window.removeEventListener('resize', onResize);
+    canvas.removeEventListener('webglcontextlost', onContextLost);
+    try { renderer.dispose(); } catch (_) { /* lost contexts may reject disposal */ }
+    canvas.remove();
+  }
+
+  function onContextLost(event) {
+    event.preventDefault();
+    stop(); // permanent static fallback; never retry a failing GPU every frame
+  }
+
+  function onResize() {
+    if (!active) return;
+    try {
+      camera.aspect = innerWidth / innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(innerWidth, innerHeight);
+    } catch (_) { stop(); }
+  }
+
+  function tick() {
+    if (!active) return;
+    try {
+      const t = performance.now() / 1000;
+      balloons.forEach(b => {
+        b.position.y = b.userData.baseY + Math.sin(t * b.userData.speed + b.userData.phase) * b.userData.amp;
+        b.rotation.x = Math.sin(t * .4 + b.userData.phase) * .12;
+        b.rotation.z = Math.cos(t * .35 + b.userData.phase) * .12;
+      });
+      const lenis = window.DD && window.DD.motion && window.DD.motion.getLenis();
+      if (lenis) scY += ((lenis.scroll || 0) - scY) * .06; else scY = (window.scrollY || 0);
+      camera.position.y = scY * .004;
+      renderer.render(scene, camera);
+    } catch (_) { stop(); return; }
+    if (active) frameId = requestAnimationFrame(tick);
+  }
+
+  canvas.addEventListener('webglcontextlost', onContextLost);
+  window.addEventListener('resize', onResize);
+  frameId = requestAnimationFrame(tick);
 })();
