@@ -8,7 +8,9 @@
   const coarse = window.matchMedia('(pointer: coarse)').matches;
   const cv = document.getElementById('genCanvas');
   if (!cv || coarse) { if (cv) cv.remove(); return; }
-  const ctx = cv.getContext('2d');
+  let ctx = null;
+  try { ctx = cv.getContext('2d'); } catch (_) { /* context denied */ }
+  if (!ctx) { cv.remove(); return; } // decorative only; content stays readable
   let W, H, parts = [];
   function resize() {
     W = cv.width = innerWidth; H = cv.height = innerHeight;
