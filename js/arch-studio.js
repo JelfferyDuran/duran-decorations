@@ -19,8 +19,17 @@
       const message = document.createElement('p');
       message.className = 'arch-unavailable';
       message.setAttribute('role', 'status');
-      message.setAttribute('data-i18n', 'arch_unavailable');
-      message.textContent = 'The interactive preview is unavailable on this device. Browse our real event photos above.';
+      const updateMessage = () => {
+        message.textContent = document.documentElement.lang === 'es'
+          ? 'La vista previa interactiva no está disponible en este dispositivo. Explora arriba nuestras fotos de eventos reales.'
+          : 'The interactive preview is unavailable on this device. Browse our real event photos above.';
+      };
+      updateMessage();
+      if (typeof MutationObserver !== 'undefined') {
+        new MutationObserver(updateMessage).observe(document.documentElement, {
+          attributes: true, attributeFilter: ['lang']
+        });
+      }
       cv.replaceWith(message);
     } else {
       cv.remove();
