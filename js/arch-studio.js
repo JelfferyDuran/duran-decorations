@@ -6,7 +6,32 @@
 (function () {
   const cv = document.getElementById('archCanvas');
   if (!cv) return;
-  const ctx = cv.getContext('2d');
+  // This studio uses Canvas 2D, not WebGL; keep it working on no-WebGL devices.
+  // If even Canvas 2D is unavailable, show a readable fallback and disable dead controls.
+  let ctx = null;
+  try { ctx = cv.getContext('2d'); } catch (_) { /* canvas context denied */ }
+  if (!ctx) {
+    const stage = cv.closest('.arch-stage');
+    const controls = document.querySelector('.arch-controls');
+    if (stage) {
+      const hint = stage.querySelector('.arch-hint');
+      if (hint) hint.hidden = true;
+      const message = document.createElement('p');
+      message.className = 'arch-unavailable';
+      message.setAttribute('role', 'status');
+      message.setAttribute('data-i18n', 'arch_unavailable');
+      message.textContent = 'The interactive preview is unavailable on this device. Browse our real event photos above.';
+      cv.replaceWith(message);
+    } else {
+      cv.remove();
+    }
+    if (controls) {
+      controls.hidden = true;
+      controls.style.display = 'none';
+      controls.querySelectorAll('button, input').forEach(control => { control.disabled = true; });
+    }
+    return;
+  }
   const PALETTES = [
     ['#E8A0BF', '#F4C7A1', '#C9A24B', '#D8C8EC', '#A8D8D0', '#F0E6D2'],
     ['#B0576E', '#8E3F52', '#F3D9D4', '#C9A24B', '#F0E6D2', '#D8C8EC'],
