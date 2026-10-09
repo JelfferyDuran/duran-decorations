@@ -25,7 +25,7 @@
     });
     document.getElementById('langBtn').textContent = window.DD_LANG === 'en' ? 'ES' : 'EN';
     /* re-render data-driven sections */
-    if (window.DD) { window.DD.renderCatalog(); window.DD.renderPricing(); window.DD.renderTestimonials(); }
+    if (window.DD) { window.DD.renderCatalog(); window.DD.renderPricing(); window.DD.renderTestimonials(); if (window.DD.renderInspiration) window.DD.renderInspiration(); }
     /* re-render estimator UI if open */
     const modal = document.getElementById('quoteModal');
     if (modal && modal.classList.contains('open')) {
@@ -54,6 +54,7 @@
       window.DD.renderCatalog();
       window.DD.renderPricing();
       window.DD.renderTestimonials();
+      if (window.DD.renderInspiration) window.DD.renderInspiration();
       /* after data in place, start motion (so cards exist for triggers) */
       window.DD.motion.initLenis();
       window.DD.motion.initMotion();

@@ -72,6 +72,19 @@ Append one record per image to `media/manifests/assets.json`:
 - For AI-generated images use `tool`; for stock use `license`. One of the two is mandatory.
 - Generated concepts are **never** presented as completed Duran Decorations client work.
 
+## Inspiration gallery (website)
+
+The site has an **Inspiration** section (`#inspiration` in `index.html`) that
+automatically renders deposited concepts — it stays hidden until at least one
+qualifies. To feature a deposit there:
+
+- set `approval` to `approved` (owner only — contributors leave `review`);
+- include `"website-inspiration"` in the record's `surfaces` array;
+- write a clear `notes` line — it becomes the card caption;
+- optionally set `title` / `title_es`, otherwise the caption is derived from the filename.
+
+Cards carry a **Concept** badge and never mix with the real portfolio.
+
 ## Validate, then PR
 
 1. Run `node scripts/validate-gallery.js` — it must pass.

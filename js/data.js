@@ -138,6 +138,46 @@
   }
   window.__ddLightbox = { open: openLightbox };
 
+
+  /* ---------- render inspiration (generated concepts, labeled) ---------- */
+  function conceptTitle(rec) {
+    if (rec.title) return rec.title;
+    const base = (rec.asset.split('/').pop() || '').replace(/\.(jpg|jpeg|png|webp)$/i, '');
+    return base.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+  function renderInspiration() {
+    const sec = document.getElementById('inspiration');
+    const grid = document.getElementById('inspireGrid');
+    if (!sec || !grid) return;
+    const load = state.inspiration
+      ? Promise.resolve(state.inspiration)
+      : fetch('media/manifests/assets.json')
+          .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+          .then(m => (m.assets || []).filter(a =>
+            a.class === 'GENERATED_CONCEPT' &&
+            (a.approval === 'approved' || a.approval === 'published') &&
+            Array.isArray(a.surfaces) && a.surfaces.indexOf('website-inspiration') !== -1))
+          .catch(() => []);
+    load.then(items => {
+      state.inspiration = items;
+      if (!items.length) { sec.hidden = true; return; }
+      sec.hidden = false;
+      const badge = t('inspire_badge') || 'Concept';
+      grid.innerHTML = items.map(a => {
+        const title = conceptTitle(a).replace(/"/g, '&quot;');
+        const notes = a.notes || '';
+        return '<article class="card">' +
+          '<img src="' + a.asset + '" alt="' + title + '" loading="lazy" decoding="async">' +
+          '<div class="card-body">' +
+            '<div class="card-tags"><span class="tag concept">' + badge + '</span></div>' +
+            '<h3>' + title + '</h3>' +
+            (notes ? '<p>' + notes + '</p>' : '') +
+          '</div>' +
+        '</article>';
+      }).join('');
+    });
+  }
+
   /* ---------- error block ---------- */
   function errBlock() {
     return '<div class="note-box">' + t('err_data') + '</div>';
@@ -145,7 +185,7 @@
 
   /* ---------- public API ---------- */
   window.DD = Object.assign(window.DD || {}, {
-    renderCatalog, renderPricing, renderTestimonials,
+    renderCatalog, renderPricing, renderTestimonials, renderInspiration,
     setData(d) { Object.assign(state, d); },
     getData: () => state,
     t
